@@ -29,6 +29,12 @@
 	joshua = home-manager.lib.homeManagerConfiguration {
 	  inherit pkgs;
 	  modules = [ ./home.nix ];
+	  extraSpecialArgs = {
+            configDir = builtins.path {
+              name = "configs";
+              path = ./configs;
+            };
+          };
 	};	
       };
     };

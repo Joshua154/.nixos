@@ -78,7 +78,6 @@
       git
       neovim
       fzf
-      zsh
       lsd
       zoxide
       ghostty

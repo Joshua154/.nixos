@@ -63,6 +63,15 @@
     ];
     
     virtualisation.docker.enable = true;
+    virtualisation.libvirtd = {
+      enable = true;
+      qemu = {
+        runAsRoot = false; # recommended for better security
+      };
+    };
+
+    # Recommended for accessing virtualization properly:
+    users.extraGroups.libvirtd.members = [ "joshua" ];
     
     nix = {
       gc = {

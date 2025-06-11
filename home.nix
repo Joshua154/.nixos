@@ -12,11 +12,27 @@ in
   home.homeDirectory = "/home/joshua";
 
   home.stateVersion = "25.05";
-  home.packages = with pkgs; [];
+  home.packages = with pkgs; [
+    texlive.combined.scheme-full
+  ];
   home.file = {};
   home.sessionVariables = { 
     #EDITOR = "nvim"; 
     #ZDOTDIR = "/home/joshua";
+  };
+
+  gtk = {
+    cursorTheme = {
+      name = "Future-cyan";
+      size = 40;
+    };
+  };
+
+  home.pointerCursor = {
+    gtk.enable = true;
+    package = pkgs.bibata-cursors;
+    name = "Bibata-Modern-Ice";
+    size = 22;
   };
 
   programs.ghostty = {

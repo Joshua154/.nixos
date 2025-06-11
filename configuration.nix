@@ -58,9 +58,9 @@
       shell = pkgs.zsh;
     };
     
-    fonts.packages = with pkgs; [
-      nerd-fonts.jetbrains-mono
-    ];
+    #fonts.packages = with pkgs; [
+    #  nerd-fonts.jetbrains-mono
+    #];
     
     virtualisation.docker.enable = true;
     virtualisation.libvirtd = {
@@ -107,13 +107,19 @@
       jdk21_headless
       python312
 
+      qemu
+      spice
+      spice-gtk
+      virt-viewer
+      virt-manager
+
       steam
       spotify
       prismlauncher
       legendary-gl
       wineWowPackages.stable
 
-    ];
+];
     
     programs = {
       firefox = {

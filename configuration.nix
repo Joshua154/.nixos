@@ -18,7 +18,6 @@
         systemd-boot.enable = true;
         efi.canTouchEfiVariables = true;
       };
-      initrd.luks.devices."luks-d29bd87d-47d8-4ba3-9e7a-087e4a02a0de".device = "/dev/disk/by-uuid/d29bd87d-47d8-4ba3-9e7a-087e4a02a0de";
     };
     
     networking = {
@@ -94,8 +93,8 @@
       direnv
       
       obsidian
-      #vesktop
-      discord
+      vesktop
+      #discord
       termius
       jetbrains-toolbox
       kdePackages.kdeconnect-kde

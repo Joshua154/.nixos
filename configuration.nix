@@ -55,6 +55,40 @@
       isNormalUser = true;
       extraGroups = [ "networkmanager" "wheel" "docker" ];
       shell = pkgs.zsh;
+      packages = with pkgs; [
+            zoxide
+            ghostty
+            gromit-mpx
+            direnv
+
+            obsidian
+            vesktop
+            #discord
+            termius
+            jetbrains-toolbox
+            kdePackages.kdeconnect-kde
+            gnomeExtensions.gsconnect
+            celluloid
+            thunderbird
+            bitwarden
+            whatsapp-for-linux
+
+            #jetbrains.idea-ultimate
+            #jetbrains.datagrip
+            #jetbrains.pycharm-professional
+
+            qemu
+            spice
+            spice-gtk
+            virt-viewer
+            virt-manager
+
+            steam
+            spotify
+            prismlauncher
+            legendary-gl
+            wineWowPackages.stable
+      ];
     };
     
     #fonts.packages = with pkgs; [
@@ -87,38 +121,15 @@
       neovim
       fzf
       lsd
-      zoxide
-      ghostty
-      gromit-mpx
-      direnv
       
-      obsidian
-      vesktop
-      #discord
-      termius
-      jetbrains-toolbox
-      kdePackages.kdeconnect-kde
-      gnomeExtensions.gsconnect
+      zip
+      unzip
+
       celluloid
-      thunderbird
-      bitwarden
 
       jdk21_headless
       python312
-
-      qemu
-      spice
-      spice-gtk
-      virt-viewer
-      virt-manager
-
-      steam
-      spotify
-      prismlauncher
-      legendary-gl
-      wineWowPackages.stable
-
-];
+    ];
     
     programs = {
       firefox = {
@@ -126,10 +137,10 @@
         package = pkgs.latest.firefox-nightly-bin;
       };
       zsh.enable = true;
-      steam = {
-        enable = true;
-        remotePlay.openFirewall = true;
-      };
+      #steam = {
+      #  enable = true;
+      #  remotePlay.openFirewall = true;
+      #};
     };
     
     nixpkgs = {

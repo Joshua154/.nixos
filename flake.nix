@@ -5,37 +5,50 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     flake-utils.url = "github:numtide/flake-utils";
 
-    home-manager.url = "github:nix-community/home-manager";
+    home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, flake-utils, home-manager, ... }:
+  outputs = { self, nixpkgs, flake-utils, home-manager, ... }@inputs:
     let
       system = "x86_64-linux";
+      hostname = "JNix";
+      username = "joshua";
+
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
       };
     in
     {
-      nixosConfigurations.JNix = nixpkgs.lib.nixosSystem {
-        inherit system;
-        modules = [
-          ./configuration.nix
+      nixosConfigurations."${hostname}" = nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          inherit inputs username hostname;
+        };
+	modules = [
+          ./hosts/JNix
+
+	  home-manager.nixosModules.home-manager {
+	    home-manager = {
+              useGlobalPkgs = true;
+	      useUserPackages = true;
+	      users."${username}" = {
+                imports = [
+		  ./home
+		];
+	      };
+	    };
+	  }
         ];
       };
 
-      homeConfigurations = {
-	joshua = home-manager.lib.homeManagerConfiguration {
-	  inherit pkgs;
-	  modules = [ ./home.nix ];
-	  extraSpecialArgs = {
-            configDir = builtins.path {
-              name = "configs";
-              path = ./configs;
-            };
-          };
-	};	
-      };
+      
+
+      #homeConfigurations = {
+#	"${username}" = home-manager.lib.homeManagerConfiguration {
+#	  inherit pkgs;
+#	  modules = [ ./home/home.nix ];
+#        };
+#      };	
     };
 }

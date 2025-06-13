@@ -1,8 +1,8 @@
 { config, pkgs, lib, ... }@args:
 
 {
-  home.username = "${username}";
-  home.homeDirectory = "/home/${username}";
+  #home.username = "${username}";
+  #home.homeDirectory = "/home/${username}";
 
   home.stateVersion = "25.05";
   home.packages = with pkgs; [
@@ -17,6 +17,7 @@
 
   imports = [
     ./shell
+    ./programs
   ];
 
   programs.home-manager.enable = true;

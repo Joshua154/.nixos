@@ -1,7 +1,9 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, hostname, username, ... }:
   
 {
     imports = [
+      ../../modules/system.nix
+
       ./nvidia.nix
       ./hardware-configuration.nix
     ];
@@ -14,6 +16,8 @@
         efi.canTouchEfiVariables = true;
       };
     };
+
+    nixpkgs.config.allowUnfree = true;
     
     networking = {
       hostName = "${hostname}";

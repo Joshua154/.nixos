@@ -2,12 +2,11 @@
 {
   home.packages = with pkgs; [
     zoxide
-    ghostty
     gromit-mpx
     direnv
 
     obsidian
-    veskt
+    vesktop
     #discord
     termius 
     jetbrains-toolbox
@@ -17,6 +16,7 @@
     thunderbird
     bitwarden
     whatsapp-for-linux
+    firefox
 
     #jetbrains.idea-ultimate
     #jetbrains.datagrip

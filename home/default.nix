@@ -15,9 +15,24 @@
     };
   };
 
+  gtk = {
+    cursorTheme = {
+      name = "Future-cyan";
+      size = 40;
+    };
+  };
+
+  home.pointerCursor = {
+    gtk.enable = true;
+    package = pkgs.bibata-cursors;
+    name = "Bibata-Modern-Ice";
+    size = 22;
+  };
+
   imports = [
     ./shell
     ./programs
+    ./windowsManager
   ];
 
   programs.home-manager.enable = true;

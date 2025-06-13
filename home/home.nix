@@ -1,12 +1,5 @@
 { config, pkgs, lib, ... }@args:
 
-let
-  configDir = args.configDir;
-  configFiles = builtins.attrNames (builtins.readDir configDir);
-  sourcedFiles = lib.concatStringsSep "\n" (
-    map (file: "source ${builtins.toString configDir}/${file}") configFiles
-  );
-in 
 {
   home.username = "joshua";
   home.homeDirectory = "/home/joshua";
@@ -25,6 +18,11 @@ in
     #EDITOR = "nvim"; 
     #ZDOTDIR = "/home/joshua";
   };
+
+  imports = [
+    ./zsh
+    ./neovim
+  ];
 
   gtk = {
     cursorTheme = {
@@ -56,52 +54,9 @@ in
     #enableZshIntegration = true;
   };
 
-  programs.neovim = {
-    enable = true;
-    viAlias = true;
-    vimAlias = true;
-
-    plugins = with pkgs.vimPlugins; [
-      cmp-nvim-lsp
-      vim-wakatime
-    ];
-  };
-
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;
-  };
-
-  programs.zsh = {
-    enable = true;
-    enableCompletion = true;
-    autosuggestion.enable = true;
-    syntaxHighlighting.enable = true;
-    history = {
-      size = 5000;
-      save = 5000;
-      share = true;
-      ignoreSpace = true;
-      ignoreDups = true;
-      expireDuplicatesFirst = true;
-    };
-
-    shellAliases = {
-      ls = "lsd";
-      #vim = "nvim";
-      c = "clear";
-      uniupdate = "git add .; git commit -m update; git push";
-    };
-
-    plugins = [
-      {
-        name = "powerlevel10k";
-        src = pkgs.zsh-powerlevel10k;
-        file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-      }
-    ];
-
-    initContent = sourcedFiles;
   };
 
   programs.home-manager.enable = true;

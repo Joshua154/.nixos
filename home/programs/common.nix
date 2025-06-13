@@ -6,8 +6,6 @@
     direnv
 
     obsidian
-    vesktop
-    #discord
     termius 
     jetbrains-toolbox
     kdePackages.kdeconnect-kde

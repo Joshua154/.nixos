@@ -3,5 +3,6 @@
     ./common.nix
 
     ./neovim
+    ./vencord
   ];
 }

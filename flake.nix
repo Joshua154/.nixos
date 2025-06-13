@@ -12,21 +12,26 @@
   outputs = { self, nixpkgs, flake-utils, home-manager, ... }:
     let
       system = "x86_64-linux";
+      hostname = "JNix";
+      username = "joshua";
+
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
       };
     in
     {
-      nixosConfigurations.JNix = nixpkgs.lib.nixosSystem {
-        inherit system;
-        modules = [
-          ./configuration.nix
+      nixosConfigurations."${hostname}" = nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          inherit inputs username hostname;
+        };
+	modules = [
+          ./hosts/"${hostname}"
         ];
       };
 
       homeConfigurations = {
-	joshua = home-manager.lib.homeManagerConfiguration {
+	"${username}" = home-manager.lib.homeManagerConfiguration {
 	  inherit pkgs;
 	  modules = [ ./home/home.nix ];
         };

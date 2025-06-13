@@ -15,7 +15,12 @@ in
   home.packages = with pkgs; [
     texlive.combined.scheme-full
   ];
-  home.file = {};
+  home.file = {
+    "Pictures" = {
+      source = ./images;
+      recursive = true;
+    };
+  };
   home.sessionVariables = { 
     #EDITOR = "nvim"; 
     #ZDOTDIR = "/home/joshua";

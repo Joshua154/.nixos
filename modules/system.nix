@@ -63,6 +63,8 @@
     };
     pulseaudio.enable = false;
   };
+  
+  programs.steam.enable = true;
 
 
   # wm
@@ -134,7 +136,10 @@
     vim
     curl
     git
-    #lsd
+
+    vulkan-tools
+    vulkan-loader
+    vulkan-validation-layers
   ];
 
   environment.etc."current_system_packages".text =

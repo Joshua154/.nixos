@@ -26,7 +26,7 @@
     virt-viewer
     virt-manager
 
-    steam
+    #steam
     spotify
     prismlauncher
     legendary-gl

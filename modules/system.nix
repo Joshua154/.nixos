@@ -55,6 +55,8 @@
       desktopManager.gnome.enable = true;
       xkb.layout = "us";
     };
+    
+    #displayManager.sddm.enable = true;
     printing.enable = true;
     pipewire = {
       enable = true;
@@ -63,6 +65,8 @@
     };
     pulseaudio.enable = false;
   };
+  
+  #programs.hyprland.enable = true;
   
   programs.steam.enable = true;
 
@@ -140,6 +144,12 @@
     vulkan-tools
     vulkan-loader
     vulkan-validation-layers
+    
+    # hyprland
+    hyprland
+    wayland-utils
+    xwayland
+    kitty
   ];
 
   environment.etc."current_system_packages".text =

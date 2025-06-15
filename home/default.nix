@@ -32,7 +32,7 @@
   imports = [
     ./shell
     ./programs
-    ./windowsManager
+    ./windowManager
   ];
 
   programs.home-manager.enable = true;

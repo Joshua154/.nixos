@@ -150,6 +150,8 @@
     wayland-utils
     xwayland
     kitty
+
+    gimp
   ];
 
   environment.etc."current_system_packages".text =

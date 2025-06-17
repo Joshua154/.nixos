@@ -146,13 +146,54 @@
     vulkan-validation-layers
     
     # hyprland
-    hyprland
-    wayland-utils
-    xwayland
-    kitty
+#    hyprland
+#    wayland-utils
+#    xwayland
+#    kitty
 
     gimp
+    samba
   ];
+  
+  services.samba = {
+    enable = true;
+    openFirewall = true;
+    
+    smbd.enable = true;
+    
+    settings = {
+      global = {
+        security = "user";
+        "workgroup" = "WORKGROUP";
+        "server string" = "Samba Server";
+        "map to guest" = "Bad User";
+        "log file" = "/var/log/samba/log.%m";
+        "max log size" = "50";
+        "dns proxy" = "no";
+        "invalid users" = [ "root" ];
+      };
+  
+      "Public" = {
+        path = "/home/${username}/Public";
+        "read only" = "no";
+        "guest ok" = "no";
+        "browseable" = "yes";
+      };
+  
+      "Share" = {
+        path = "/home/${username}/Share";
+        "read only" = "no";
+        "guest ok" = "yes";
+        "browseable" = "yes";
+      };
+    };
+  };
+  
+  systemd.tmpfiles.rules = [
+    "d /home/${username}/Public 0755 ${username} users -"
+    "d /home/${username}/Share 0777 ${username} users -"
+  ];
+
 
   environment.etc."current_system_packages".text =
     let

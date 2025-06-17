@@ -5,6 +5,8 @@
     gromit-mpx
     direnv
 
+    fzf
+
     obsidian
     termius 
     jetbrains-toolbox
@@ -36,6 +38,12 @@
   programs = {
     feh.enable = true;
     zoxide.enable = true;
+
+    git = {
+      enable = true;
+      userEmail = "joshua.neunert@gmail.com";
+      userName = "Joshua Neunert";
+    };
   };
 
   services = {

@@ -173,15 +173,15 @@
         "invalid users" = [ "root" ];
       };
   
-      "Public" = {
-        path = "/home/${username}/Public";
+      "privateShare" = {
+        path = "/home/${username}/privateShare";
         "read only" = "no";
         "guest ok" = "no";
         "browseable" = "yes";
       };
   
-      "Share" = {
-        path = "/home/${username}/Share";
+      "Public" = {
+        path = "/home/${username}/Public";
         "read only" = "no";
         "guest ok" = "yes";
         "browseable" = "yes";
@@ -191,7 +191,7 @@
   
   systemd.tmpfiles.rules = [
     "d /home/${username}/Public 0755 ${username} users -"
-    "d /home/${username}/Share 0777 ${username} users -"
+    "d /home/${username}/privateShare 0777 ${username} users -"
   ];
 
 

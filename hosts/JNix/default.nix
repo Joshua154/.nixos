@@ -13,10 +13,14 @@
     boot = {
       loader = {
         systemd-boot.enable = false;
-        efi.canTouchEfiVariables = true;
+        efi = {
+          canTouchEfiVariables = false;
+          efiSysMountPoint = "/boot";
+        };
         grub = {
           enable = true;
           efiSupport = true;
+          efiInstallAsRemovable = true;
           devices = [ "nodev" ];
         };
       };

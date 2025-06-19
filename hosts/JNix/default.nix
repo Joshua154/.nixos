@@ -6,6 +6,8 @@
 
       ./nvidia.nix
       ./hardware-configuration.nix
+      
+      ./grub
     ];
 
     programs.kdeconnect.enable = true;

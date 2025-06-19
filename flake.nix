@@ -23,7 +23,7 @@
     {
       nixosConfigurations."${hostname}" = nixpkgs.lib.nixosSystem {
         specialArgs = {
-          inherit inputs username hostname;
+          inherit inputs username hostname system;
         };
 	modules = [
           ./hosts/JNix

@@ -1,5 +1,6 @@
 {
-  implements = [
-    "./minegrub"
+  imports = [
+#    ./minegrub
+    ./Mojava-window-right-dark
   ];
 }

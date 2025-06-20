@@ -1,14 +1,24 @@
 { config, pkgs, xdg, lib, ... }:
 {
-  programs.kitty.enable = true;
   wayland.windowManager.hyprland = {
-    enable = true;
-#    settings = {
-#      
-#    };
-
-    #xwayland.enable = true;
-  };
+      enable = true;
+      package = null;
+      settings = {
+        "$mod" = "SUPER";
+        bind = [
+          "$mod, RETURN, exec, kitty"
+          "$mod, Q, killactive,"
+        ];
+      };
+    };
+  
+  
+    home.packages = with pkgs; [
+      kitty
+      waybar
+      wofi
+      mako
+    ];
 
 #  programs.waybar.enable = true;
 #  services.gnome-keyring.enable = true;

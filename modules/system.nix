@@ -1,5 +1,9 @@
-{ config, pkgs, lib, username, hostname, ... }:
+{ config, pkgs, lib, inputs, username, hostname, ... }:
 {
+  imports = [
+    ./hyprland.nix
+  ];
+
   users.users.${username} = {
     isNormalUser = true;
     description = username;

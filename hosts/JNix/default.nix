@@ -26,6 +26,12 @@
           devices = [ "nodev" ];
         };
       };
+      
+      plymouth = {
+        enable = true;
+        theme = "bgrt"; #breeze
+      };
+      kernelParams = [ "quiet" "splash" ];
     };
 
     nixpkgs.config.allowUnfree = true;

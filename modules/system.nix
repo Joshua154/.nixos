@@ -31,6 +31,7 @@
     "xpdf-4.05"
     "openssl-1.1.1w"
   ];
+  nixpkgs.config.allowUnsupportedSystem = true;
 
   # do garbage collection weekly to keep disk usage low
   nix.gc = {

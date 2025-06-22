@@ -33,6 +33,8 @@
     prismlauncher
     legendary-gl
     wineWowPackages.stable
+    
+    teams-for-linux
   ];
 
   programs = {

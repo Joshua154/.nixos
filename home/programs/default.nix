@@ -4,5 +4,6 @@
 
     ./neovim
     ./vencord
+    ./firefox
   ];
 }

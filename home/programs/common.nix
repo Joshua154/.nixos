@@ -16,7 +16,6 @@
     thunderbird
     bitwarden
     whatsapp-for-linux
-    firefox
 
     #jetbrains.idea-ultimate
     #jetbrains.datagrip

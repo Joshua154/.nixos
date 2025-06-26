@@ -1,7 +1,7 @@
 { config, pkgs, lib, inputs, username, hostname, ... }:
 {
   imports = [
-    ./hyprland.nix
+#    ./hyprland.nix
   ];
 
   users.users.${username} = {

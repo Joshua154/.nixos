@@ -1,7 +1,7 @@
 { config, pkgs, libs, ... }:
 {
   imports = [
-    ./hyprland
+#    ./hyprland
 
     #./bspwm
   ];

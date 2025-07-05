@@ -5,5 +5,7 @@
     ./neovim
     ./vencord
     ./firefox
+    
+    ./python
   ];
 }

@@ -2,6 +2,8 @@
 {
   imports = [
 #    ./hyprland.nix
+    ./gdm.nix
+#    ./sddm.nix
   ];
 
   users.users.${username} = {
@@ -56,7 +58,6 @@
   services = {
     xserver = {
       enable = true;
-      displayManager.gdm.enable = true;
       desktopManager.gnome.enable = true;
       xkb.layout = "us";
     };

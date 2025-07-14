@@ -8,6 +8,7 @@
       ./hardware-configuration.nix
       
       ./grub
+      ./openconnect
     ];
 
     programs.kdeconnect.enable = true;

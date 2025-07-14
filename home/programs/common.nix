@@ -15,7 +15,6 @@
     celluloid
     thunderbird
     bitwarden
-    whatsapp-for-linux
 
     #jetbrains.idea-ultimate
     #jetbrains.datagrip
@@ -34,6 +33,7 @@
     wineWowPackages.stable
     
     teams-for-linux
+    beeper
   ];
 
   programs = {

@@ -74,7 +74,20 @@
   
   #programs.hyprland.enable = true;
   
-  programs.steam.enable = true;
+  programs = {
+    appimage = {
+      enable = true;
+      binfmt = true;
+    };
+    
+    steam.enable = true;
+    
+    dconf.enable = true;
+    adb.enable = true;
+    zsh.enable = true;
+    
+    noisetorch.enable = true;
+  };
 
 
   # wm
@@ -128,13 +141,7 @@
       emoji = [ "Noto Color Emoji" ];
     };
   };
-
-  programs.dconf.enable = true;
-  programs.adb.enable = true;
-
-  #users.defaultUserShell = pkgs.fish;
-
-  programs.zsh.enable = true;
+  
   users.defaultUserShell = pkgs.zsh;
 
   # Install firefox.
@@ -209,9 +216,6 @@
     in
     formatted;
 
-  programs.noisetorch = {
-    enable = true;
-  };
 
   # enable docker
   virtualisation.docker.enable = true;

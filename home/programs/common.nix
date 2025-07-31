@@ -34,6 +34,8 @@
     
     teams-for-linux
     beeper
+    
+    activitywatch
   ];
 
   programs = {

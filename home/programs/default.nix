@@ -7,5 +7,6 @@
     ./firefox
     
     ./python
+    ./systemStatus
   ];
 }

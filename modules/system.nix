@@ -166,6 +166,8 @@
 
     gimp
     samba
+    
+    btop-cuda
   ];
   
   services.samba = {

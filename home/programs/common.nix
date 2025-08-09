@@ -34,6 +34,7 @@
     
     teams-for-linux
     beeper
+    bluemail
     
     activitywatch
   ];

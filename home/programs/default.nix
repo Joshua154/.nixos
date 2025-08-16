@@ -8,5 +8,7 @@
     
     ./python
     ./systemStatus
+    
+    ./latexEnv
   ];
 }

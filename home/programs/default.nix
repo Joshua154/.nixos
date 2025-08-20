@@ -10,5 +10,7 @@
     ./systemStatus
 
     ./latexEnv
+    
+    ./viewer
   ];
 }

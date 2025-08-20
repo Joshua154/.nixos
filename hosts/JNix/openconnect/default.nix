@@ -4,6 +4,6 @@
     openconnect
     networkmanager
     networkmanager-openconnect
-#    networkmanager-openconnect-gnome
+    #networkmanager-openconnect-gnome
   ];
 }

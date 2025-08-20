@@ -9,6 +9,7 @@ let
       cp -r * $out/
     '';
   };
-in {
+in
+{
   boot.loader.grub.theme = "${minegrub}";
 }

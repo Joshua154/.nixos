@@ -5,10 +5,10 @@
     ./neovim
     ./vencord
     ./firefox
-    
+
     ./python
     ./systemStatus
-    
+
     ./latexEnv
   ];
 }

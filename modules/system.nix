@@ -70,6 +70,13 @@
       pulse.enable = true;
     };
     pulseaudio.enable = false;
+    
+    
+    blueman.enable = true;
+    udev.packages = [ pkgs.via ];
+    flatpak.enable = true;
+    
+    
   };
   
   #programs.hyprland.enable = true;
@@ -245,10 +252,7 @@
       };
     };
   };
-  services.blueman.enable = true;
   hardware.keyboard.qmk.enable = true;
-  services.udev.packages = [ pkgs.via ];
-  services.flatpak.enable = true;
   xdg.portal.enable = true;
   xdg.mime.defaultApplications = {
     "image/png" = [

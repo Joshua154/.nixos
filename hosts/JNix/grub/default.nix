@@ -1,6 +1,6 @@
 {
   imports = [
-#    ./minegrub
+    #./minegrub
     ./Mojava-window-right-dark
   ];
 }

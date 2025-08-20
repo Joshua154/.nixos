@@ -7,7 +7,7 @@
 
     home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    
+
     hyprland.url = "github:hyprwm/Hyprland";
   };
 
@@ -27,30 +27,22 @@
         specialArgs = {
           inherit inputs username hostname system;
         };
-	modules = [
+        modules = [
           ./hosts/JNix
 
-	  home-manager.nixosModules.home-manager {
-	    home-manager = {
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
               useGlobalPkgs = true;
-	      useUserPackages = true;
-	      users."${username}" = {
+              useUserPackages = true;
+              users."${username}" = {
                 imports = [
-		  ./home
-		];
-	      };
-	    };
-	  }
+                  ./home
+                ];
+              };
+            };
+          }
         ];
       };
-
-      
-
-      #homeConfigurations = {
-#	"${username}" = home-manager.lib.homeManagerConfiguration {
-#	  inherit pkgs;
-#	  modules = [ ./home/home.nix ];
-#        };
-#      };	
     };
 }

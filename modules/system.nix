@@ -1,9 +1,9 @@
 { config, pkgs, lib, inputs, username, hostname, ... }:
 {
   imports = [
-#    ./hyprland.nix
+    #./hyprland.nix
     ./gdm.nix
-#    ./sddm.nix
+    #./sddm.nix
   ];
 
   users.users.${username} = {
@@ -61,7 +61,7 @@
       desktopManager.gnome.enable = true;
       xkb.layout = "us";
     };
-    
+
     #displayManager.sddm.enable = true;
     printing.enable = true;
     pipewire = {
@@ -70,29 +70,29 @@
       pulse.enable = true;
     };
     pulseaudio.enable = false;
-    
-    
+
+
     blueman.enable = true;
     udev.packages = [ pkgs.via ];
     flatpak.enable = true;
-    
-    
+
+
   };
-  
+
   #programs.hyprland.enable = true;
-  
+
   programs = {
     appimage = {
       enable = true;
       binfmt = true;
     };
-    
+
     steam.enable = true;
-    
+
     dconf.enable = true;
     adb.enable = true;
     zsh.enable = true;
-    
+
     noisetorch.enable = true;
   };
 
@@ -148,7 +148,7 @@
       emoji = [ "Noto Color Emoji" ];
     };
   };
-  
+
   users.defaultUserShell = pkgs.zsh;
 
   # Install firefox.
@@ -164,25 +164,25 @@
     vulkan-tools
     vulkan-loader
     vulkan-validation-layers
-    
+
     # hyprland
-#    hyprland
-#    wayland-utils
-#    xwayland
-#    kitty
+    #    hyprland
+    #    wayland-utils
+    #    xwayland
+    #    kitty
 
     gimp
     samba
-    
+
     btop-cuda
   ];
-  
+
   services.samba = {
     enable = true;
     openFirewall = true;
-    
+
     smbd.enable = true;
-    
+
     settings = {
       global = {
         security = "user";
@@ -194,14 +194,14 @@
         "dns proxy" = "no";
         "invalid users" = [ "root" ];
       };
-  
+
       "privateShare" = {
         path = "/home/${username}/privateShare";
         "read only" = "no";
         "guest ok" = "no";
         "browseable" = "yes";
       };
-  
+
       "Public" = {
         path = "/home/${username}/Public";
         "read only" = "no";
@@ -210,7 +210,7 @@
       };
     };
   };
-  
+
   systemd.tmpfiles.rules = [
     "d /home/${username}/Public 0755 ${username} users -"
     "d /home/${username}/privateShare 0777 ${username} users -"

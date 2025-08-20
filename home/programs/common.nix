@@ -8,7 +8,7 @@
     fzf
 
     obsidian
-    termius 
+    termius
     jetbrains-toolbox
     kdePackages.kdeconnect-kde
     gnomeExtensions.gsconnect
@@ -31,11 +31,11 @@
     prismlauncher
     legendary-gl
     wineWowPackages.stable
-    
+
     teams-for-linux
     beeper
     bluemail
-    
+
     activitywatch
   ];
 

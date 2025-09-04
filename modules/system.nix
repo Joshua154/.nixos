@@ -79,6 +79,16 @@
 
   };
 
+  networking = {
+    firewall.enable = true;
+    firewall.allowedTCPPorts = [ 22 80 443 ];
+  };
+
+  boot = {
+    extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
+    kernelModules = [ "v4l2loopback" ];
+  };
+
   #programs.hyprland.enable = true;
 
   programs = {
@@ -94,6 +104,14 @@
     zsh.enable = true;
 
     noisetorch.enable = true;
+
+    obs-studio = {
+      enable = true;
+      enableVirtualCamera = true;
+      plugins = with pkgs.obs-studio-plugins; [
+        droidcam-obs
+      ];
+    };
   };
 
 

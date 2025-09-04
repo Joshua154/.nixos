@@ -9,10 +9,20 @@
       (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" "thunderbolt" "uas" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-amd" "kvm-intel" ];
-  boot.extraModulePackages = [ ];
+  boot = {
+    initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" "thunderbolt" "uas" ];
+    initrd.kernelModules = [ ];
+    kernelModules = [ "kvm-amd" "kvm-intel" "v4l2loopback" ];
+
+    extraModulePackages = [
+      config.boot.kernelPackages.v4l2loopback
+    ];
+
+    extraModprobeConfig = ''
+      options v4l2loopback devices=1 video_nr=10 card_label="OBS Virtual Camera" exclusive_caps=1
+    '';
+  };
+
   fileSystems."/" = {
     device = "/dev/disk/by-label/nix-root";
     fsType = "ext4";

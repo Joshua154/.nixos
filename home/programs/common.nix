@@ -28,6 +28,7 @@
 
     #steam
     spotify
+    youtube-music
     prismlauncher
     legendary-gl
     wineWowPackages.stable

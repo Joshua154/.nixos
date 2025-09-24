@@ -29,6 +29,7 @@
       #vim = "nvim";
       c = "clear";
       uniupdate = "git add .; git commit -m update; git push";
+      clip = "xclip -selection clipboard";
     };
 
     plugins = [

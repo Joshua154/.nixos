@@ -15,6 +15,8 @@
     celluloid
     thunderbird
     bitwarden
+    httpie-desktop
+    burpsuite
 
     #jetbrains.idea-ultimate
     #jetbrains.datagrip

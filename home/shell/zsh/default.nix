@@ -30,6 +30,7 @@
       c = "clear";
       uniupdate = "git add .; git commit -m update; git push";
       clip = "xclip -selection clipboard";
+      rebuild = "sudo nixos-rebuild switch --flake ~/.nixos#JNix --impure"; # TODO: use hostname variable here like `#${hostname}`
     };
 
     plugins = [

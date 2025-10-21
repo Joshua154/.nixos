@@ -4,10 +4,14 @@
     zoxide
     gromit-mpx
     direnv
+    unzip
 
     fzf
 
     obsidian
+    pureref
+    pdfarranger
+    zathura
     termius
     jetbrains-toolbox
     kdePackages.kdeconnect-kde

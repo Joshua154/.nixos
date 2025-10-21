@@ -41,11 +41,12 @@
     hostName = "${hostname}";
     networkmanager.enable = true;
     
-    interfaces.enp5s0 = {
-      useDHCP = true;
-      
-      wakeOnLan.enable = true;
-    };
+    # TODO: fixe for Notebook vs Desktop
+#    interfaces.enp5s0 = {
+#      useDHCP = true;
+#
+#      wakeOnLan.enable = true;
+#    };
   };
 
   system.stateVersion = "25.05";

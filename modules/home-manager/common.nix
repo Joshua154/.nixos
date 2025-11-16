@@ -3,7 +3,7 @@
 {
   imports = [
     ./zsh
-    ./git
+    ./git.nix
   ];
 
   home.packages = with pkgs; [

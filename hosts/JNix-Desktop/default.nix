@@ -7,11 +7,10 @@
 {
   imports = [
     ./../../modules/nixos/gaming.nix
+    ./../../modules/nixos/nvidia.nix
   ];
 
   system.stateVersion = version;
-
-  services.xserver.videoDrivers = [ "nvidia" ];
 
   home-manager.users.${username} = {
     imports = [

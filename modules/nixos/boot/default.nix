@@ -2,16 +2,8 @@
 
 {
   imports = [
-    ../../modules/system.nix
-
-    ./nvidia.nix
-    ./hardware-configuration.nix
-
     ./grub
-    ./openconnect
   ];
-
-  programs.kdeconnect.enable = true;
 
   boot = {
     loader = {
@@ -34,20 +26,4 @@
     };
     kernelParams = [ "quiet" "splash" ];
   };
-
-  nixpkgs.config.allowUnfree = true;
-
-  networking = {
-    hostName = "${hostname}";
-    networkmanager.enable = true;
-    
-    # TODO: fixe for Notebook vs Desktop
-#    interfaces.enp5s0 = {
-#      useDHCP = true;
-#
-#      wakeOnLan.enable = true;
-#    };
-  };
-
-  system.stateVersion = "25.05";
 }

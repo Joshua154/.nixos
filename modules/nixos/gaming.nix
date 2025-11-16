@@ -5,6 +5,8 @@
     steam
     gamemode
     mangohud
+    prismlauncher
+    legendary-gl
   ];
 
   programs.gamemode.enable = true;

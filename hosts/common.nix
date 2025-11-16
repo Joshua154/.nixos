@@ -7,6 +7,7 @@
 {
   imports = [
     ./../modules/nixos/common-settings.nix
+    ./../../modules/home-manager/programs/ghosty.nix
   ];
 
   users.users.${username} = {

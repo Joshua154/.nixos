@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, username, hostname, ... }:
+{ config, pkgs, lib, inputs, username, hostname, system, ... }:
 {
   imports = [
     #./hyprland.nix
@@ -75,8 +75,7 @@
     blueman.enable = true;
     udev.packages = [ pkgs.via ];
     flatpak.enable = true;
-
-
+#    displaylink.enable = true;
   };
 
   networking = {
@@ -85,13 +84,14 @@
       allowedTCPPorts = [ 
         22 80 443
         8080 # for web services
+        3000
       ];
     };
   };
 
   boot = {
     extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
-    kernelModules = [ "v4l2loopback" ];
+    kernelModules = [ "v4l2loopback" "evdi" ];
   };
 
   #programs.hyprland.enable = true;
@@ -200,6 +200,9 @@
     samba
 
     btop-cuda
+    
+    freerdp
+    inputs.winboat.packages.${system}.winboat
   ];
 
   services.samba = {

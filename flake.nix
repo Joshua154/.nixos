@@ -1,53 +1,63 @@
 {
-  description = "Joshua's NixOS configuration";
+  description = "My modular NixOS configuration with multiple hosts and Home-Manager";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
-    flake-utils.url = "github:numtide/flake-utils";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    home-manager.url = "github:nix-community/home-manager/release-25.05";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
-    hyprland.url = "github:hyprwm/Hyprland";
-
-    winboat = {
-      url = "github:TibixDev/winboat";
+    # Home-Manager
+    home-manager = {
+      url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, flake-utils, home-manager, ... }@inputs:
-    let
-      system = "x86_64-linux";
-      hostname = "JNix";
-      username = "joshua";
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@inputs:
+  let
+    system = "x86_64-linux";
+    username = "joshua";
+    version = "25.05";
 
-      pkgs = import nixpkgs {
+    mkNixOSHost = { hostName, system, specialArgs, modules }:
+      nixpkgs.lib.nixosSystem {
+        inherit system;
+
+        inherit specialArgs;
+
+        modules = [
+          ./hosts/${hostName}/hardware-configuration.nix
+
+          home-manager.nixosModules.home-manager
+
+          ./hosts/common.nix
+
+          ./hosts/${hostName}/default.nix
+        ] ++ modules;
+      };
+    
+    specialArgs = {
+      pkgs-unstable = import nixpkgs-unstable {
         inherit system;
         config.allowUnfree = true;
       };
-    in
-    {
-      nixosConfigurations."${hostname}" = nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit inputs username hostname system;
-        };
-        modules = [
-          ./hosts/JNix
-
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              users."${username}" = {
-                imports = [
-                  ./home
-                ];
-              };
-            };
-          }
-        ];
-      };
+      inherit inputs;
+      inherit username version;
     };
+
+  in
+  {
+    nixosConfigurations.JNix-Desktop = mkNixOSHost {
+      hostName = "JNix-Desktop";
+      inherit system specialArgs;
+      modules = [];
+    };
+
+    nixosConfigurations.JNix-Laptop = mkNixOSHost {
+      hostName = "JNix-Laptop";
+      inherit system specialArgs;
+      modules = [
+        ./modules/nixos/power-management.nix
+      ];
+    };
+  };
 }

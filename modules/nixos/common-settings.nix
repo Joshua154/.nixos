@@ -6,7 +6,6 @@
 
 {
   imports = [
-    ./images
     ./boot
     ./openconnect.nix
   ];

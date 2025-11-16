@@ -19,4 +19,6 @@
     git
     zsh
   ];
+
+  zsh.enable = true;
 }

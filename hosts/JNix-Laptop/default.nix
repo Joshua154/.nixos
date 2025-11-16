@@ -14,8 +14,6 @@
   home-manager.users.${username} = {
     imports = [
       ./../../modules/home-manager/common.nix
-      ./../../modules/home-manager/cli.nix
-      ./../../modules/home-manager/git.nix
     ];
 
     home.username = username;

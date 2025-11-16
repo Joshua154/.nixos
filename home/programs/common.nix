@@ -5,6 +5,7 @@
     gromit-mpx
     direnv
     unzip
+    gnumake42
 
     fzf
 
@@ -13,7 +14,6 @@
     pdfarranger
     zathura
     termius
-    jetbrains-toolbox
     kdePackages.kdeconnect-kde
     gnomeExtensions.gsconnect
     celluloid
@@ -22,9 +22,15 @@
     httpie-desktop
     burpsuite
 
-    #jetbrains.idea-ultimate
-    #jetbrains.datagrip
-    #jetbrains.pycharm-professional
+    # jetbrains-toolbox
+    jetbrains.gateway
+    jetbrains.idea-ultimate
+    jetbrains.pycharm-professional
+    jetbrains.ruby-mine
+    jetbrains.webstorm
+    jetbrains.clion
+    jetbrains.datagrip
+    jetbrains.goland
 
     qemu
     spice

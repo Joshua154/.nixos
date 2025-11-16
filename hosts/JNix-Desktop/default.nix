@@ -15,8 +15,6 @@
   home-manager.users.${username} = {
     imports = [
       ./../../modules/home-manager/common.nix
-      ./../../modules/home-manager/cli.nix
-      ./../../modules/home-manager/git.nix
       # ./../../modules/home-manager/hyprland.nix
     ];
 

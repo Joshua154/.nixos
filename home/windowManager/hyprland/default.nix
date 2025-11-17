@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 let
-  theme = "theme";
+  theme = "Balcony";
 in
 {
   home.packages = with pkgs; [

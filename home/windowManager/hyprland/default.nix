@@ -1,4 +1,8 @@
 { config, pkgs, ... }:
+
+let
+  theme = "theme";
+in
 {
   home.packages = with pkgs; [
     hyprlock
@@ -7,13 +11,7 @@
     swww
   ];
 
-  xdg.configFile."hypr" = {
-    source = ./config/hypr;
-    recursive = true;
-  };
-
-  xdg.configFile."waybar" = {
-    source = ./config/waybar;
-    recursive = true;
-  };
+  imports = [
+    ./${theme}
+  ]
 }

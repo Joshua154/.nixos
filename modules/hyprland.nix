@@ -1,9 +1,23 @@
 { config, pkgs, inputs, ... }:
 {
-  programs.hyprland.enable = true;
-  programs.hyprland.package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+  programs.hyprland = {
+    enable = true;
+    withUWSM = true;
+  };
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  environment.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";
 
+  programs.hyprlock.enable = true;
+  services.hypridle.enable = true;
 
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  environment.systemPackages = with pkgs; [
+    pyprland
+    hyprpicker
+    hyprcursor
+    hyprlock
+    hypridle
+    hyprpaper
+    hyprsunset
+    hyprpolkitagent
+  ];
 }

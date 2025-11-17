@@ -1,7 +1,7 @@
 { config, pkgs, lib, inputs, username, hostname, system, ... }:
 {
   imports = [
-    #./hyprland.nix
+    ./hyprland.nix
     ./gdm.nix
     #./sddm.nix
   ];

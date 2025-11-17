@@ -203,6 +203,8 @@
     
     freerdp
     inputs.winboat.packages.${system}.winboat
+
+    cloudflared
   ];
 
   services.samba = {

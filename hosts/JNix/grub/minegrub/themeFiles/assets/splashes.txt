@@ -1,50 +1,30 @@
-I use Arch BTW!
-Now with 100% more Linux!
-GNU's not UNIX!
-Praise Tux!
-Wine is not an Emulator!
-I am Root!
-Still stuck in Vim!
-Won't sell your data!
-Now with Rust!
-Full of Distros!
-Do redistribute!
-May contain penguins!
-Support FOSS devs!
-Bailing out!
-Everything is a file!
-May contain systemd...
-Open source!
-Made in Finland!
-It's not a bug, it's a feature!
-It's GNU/Linux!
-Sudo rm -rf!
-Yes, do as I say!
-90% bug free!
-Not water proof!
-Used by billions!
-12345 is a bad password!
-Turing complete!
-Woah.
-I have a suggestion.
+sudo rm -rf!
+Do not eat!
+No place like ::1
+No place like ~
+May contain spaghetti...
+[Insert splash text here]
 pls fix
 beep beep
 Boop!
 Splash!
-[Insert splash text here]
-Made by "real" people!
-Viruses have no power here!
-No place like ~
-Used in space!
-No reboots required!
-Case sensitive!
-.exe won't work here!
-No ads!
-May contain spaghetti...
-No registry needed!
-Forward slashes only!
-No DLLs needed!
-127.0.0.1 > localhost :)
-No caffeine!
-Zero calories!
-Do not eat!
+Woah.
+Turing complete!
+12345 is a bad password!
+Not water proof!
+It's not a bug, it's a feature!
+May contain systemd...
+Now with Rust!
+I am Root!
+Praise Tux!
+Its not Arch BTW!
+flakes are experimental™
+Trust the derivation.
+Compiling your hopes and dreams…
+Deterministically unpredictable.
+System going brrr.
+One config to rule them all.
+Not compatible with side effects.
+May contain traces of GNU.
+0 days since last rebuild.
+Flake it till you make it.

@@ -13,7 +13,7 @@ in
   }) dirs);
 
   home.packages = with pkgs; [
-    waybar-hyprland
+    waybar
     rofi
     dunst
     kitty
@@ -23,6 +23,6 @@ in
     pamixer
     light
     brillo
-    canva
+    # canva
   ];
 }

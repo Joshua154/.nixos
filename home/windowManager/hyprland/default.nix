@@ -13,5 +13,5 @@ in
 
   imports = [
     ./${theme}
-  ]
+  ];
 }

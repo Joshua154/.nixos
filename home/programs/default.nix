@@ -3,7 +3,7 @@
     ./common.nix
 
     ./neovim
-    ./vencord
+    # ./vencord
     ./firefox
 
     ./python

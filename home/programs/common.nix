@@ -44,6 +44,7 @@
     prismlauncher
     legendary-gl
     wineWowPackages.stable
+    discord
 
     teams-for-linux
     beeper

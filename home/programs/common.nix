@@ -22,16 +22,6 @@
     httpie-desktop
     burpsuite
 
-    # jetbrains-toolbox
-    jetbrains.gateway
-    jetbrains.idea-ultimate
-    jetbrains.pycharm-professional
-    jetbrains.ruby-mine
-    jetbrains.webstorm
-    jetbrains.clion
-    jetbrains.datagrip
-    jetbrains.goland
-
     qemu
     spice
     spice-gtk

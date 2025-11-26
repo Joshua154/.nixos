@@ -3,13 +3,14 @@
     ./common.nix
 
     ./neovim
-    # ./vencord
     ./firefox
 
     ./python
     ./systemStatus
 
     ./latexEnv
+    ./coding/java
+    ./coding/jetbrains
     
     ./viewer
   ];

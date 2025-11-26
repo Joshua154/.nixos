@@ -203,6 +203,7 @@
     
     freerdp
     inputs.winboat.packages.${system}.winboat
+    usbutils
 
     cloudflared
   ];

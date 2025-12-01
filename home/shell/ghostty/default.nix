@@ -3,7 +3,7 @@
   programs.ghostty = {
     enable = true;
     settings = {
-      theme = "catppuccin-mocha";
+      # theme = "catppuccin-mocha";
       font-size = 14;
       background-blur-radius = 20;
       mouse-hide-while-typing = true;

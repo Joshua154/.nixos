@@ -40,13 +40,13 @@
   
   boot.resumeDevice = "/dev/disk/by-label/swap";
   
-  services.logind.extraConfig = ''
-    HandlePowerKey=poweroff
-    HandleSuspendKey=suspend
-    HandleHibernateKey=hibernate
-    HandleLidSwitch=suspend
-    HibernateDelaySec=0
-  '';
+  # services.logind.extraConfig = ''
+  #   HandlePowerKey=poweroff
+  #   HandleSuspendKey=suspend
+  #   HandleHibernateKey=hibernate
+  #   HandleLidSwitch=suspend
+  #   HibernateDelaySec=0
+  # '';
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

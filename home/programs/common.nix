@@ -18,7 +18,7 @@
     gnomeExtensions.gsconnect
     celluloid
     thunderbird
-    bitwarden
+    bitwarden-desktop
     httpie-desktop
     burpsuite
 
@@ -49,8 +49,10 @@
 
     git = {
       enable = true;
-      userEmail = "joshua.neunert@gmail.com";
-      userName = "Joshua Neunert";
+      settings.user = {
+        email = "joshua.neunert@gmail.com";
+        name = "Joshua Neunert";
+      };
     };
   };
 

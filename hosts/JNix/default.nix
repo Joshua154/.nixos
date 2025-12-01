@@ -9,6 +9,8 @@
 
     ./grub
     ./openconnect
+
+    ./zoom.nix
   ];
 
   programs.kdeconnect.enable = true;

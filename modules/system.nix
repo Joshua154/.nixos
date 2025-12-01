@@ -1,7 +1,7 @@
 { config, pkgs, lib, inputs, username, hostname, system, ... }:
 {
   imports = [
-    ./hyprland.nix
+    # ./hyprland.nix
     ./gdm.nix
     #./sddm.nix
   ];
@@ -58,9 +58,10 @@
   services = {
     xserver = {
       enable = true;
-      desktopManager.gnome.enable = true;
       xkb.layout = "us";
     };
+    
+    desktopManager.gnome.enable = true;
 
     #displayManager.sddm.enable = true;
     printing.enable = true;
@@ -140,7 +141,7 @@
       # normal fonts
       noto-fonts
       noto-fonts-cjk-sans
-      noto-fonts-emoji
+      noto-fonts-color-emoji
       newcomputermodern
 
       # nerdfonts
@@ -202,7 +203,7 @@
     btop-cuda
     
     freerdp
-    inputs.winboat.packages.${system}.winboat
+    # inputs.winboat.packages.${system}.winboat
     usbutils
 
     cloudflared

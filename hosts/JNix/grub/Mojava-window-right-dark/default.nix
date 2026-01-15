@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
-
-let
+{
+  config,
+  pkgs,
+  ...
+}: let
   Mojava-window-right-dark = pkgs.stdenv.mkDerivation {
     name = "Mojava-window-right-dark";
     src = ./themeFiles;
@@ -9,7 +11,6 @@ let
       cp -r * $out/
     '';
   };
-in
-{
+in {
   boot.loader.grub.theme = "${Mojava-window-right-dark}";
 }

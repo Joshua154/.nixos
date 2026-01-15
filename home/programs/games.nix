@@ -1,4 +1,4 @@
-{
+{config, ...}: {
   xdg.desktopEntries.rocket-league = {
     name = "Rocket League";
     genericName = "Rocket League";
@@ -6,7 +6,7 @@
     exec = "legendary launch Sugar";
     icon = "${config.home.homeDirectory}/Pictures/icons/rocket-league.png";
     terminal = false;
-    categories = [ "Game" ];
+    categories = ["Game"];
     type = "Application";
   };
 }

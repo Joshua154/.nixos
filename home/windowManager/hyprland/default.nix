@@ -1,9 +1,10 @@
-{ config, pkgs, ... }:
-
-let
-  theme = "Balcony";
-in
 {
+  config,
+  pkgs,
+  ...
+}: let
+  theme = "Balcony";
+in {
   home.packages = with pkgs; [
     hyprlock
     hypridle

@@ -1,17 +1,13 @@
 {
   imports = [
-    ./common.nix
+    ./common
+    ./git
 
     ./neovim
     ./firefox
+    ./vencord
 
-    ./python
-    ./systemStatus
-
-    ./latexEnv
-    ./coding/java
-    ./coding/jetbrains
-    
-    ./viewer
+    ./bottom.nix
+    ./games.nix
   ];
 }

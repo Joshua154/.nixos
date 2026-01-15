@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
-
-let
+{
+  config,
+  pkgs,
+  ...
+}: let
   minegrub = pkgs.stdenv.mkDerivation {
     name = "minegrub";
     src = ./themeFiles;
@@ -9,7 +11,6 @@ let
       cp -r * $out/
     '';
   };
-in
-{
+in {
   boot.loader.grub.theme = "${minegrub}";
 }

@@ -1,5 +1,10 @@
-{ config, pkgs, xdg, lib, ... }:
 {
+  config,
+  pkgs,
+  xdg,
+  lib,
+  ...
+}: {
   # bspwm
   xsession = {
     numlock.enable = true;

@@ -18,41 +18,38 @@
     # };
   };
 
-  outputs = { self, nixpkgs, flake-utils, home-manager, ... }@inputs:
-    let
-      system = "x86_64-linux";
-      hostname = "JNix";
-      username = "joshua";
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    ...
+  } @ inputs: let
+    system = "x86_64-linux";
+    hostname = "JNix";
+    username = "joshua";
+  in {
+    formatter.${system} = nixpkgs.legacyPackages.${system}.alejandra;
 
-      pkgs = import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-        overlays = [
-          (import ~/nixpkgs-overlays/modrinth-app.nix)
-        ];
+    nixosConfigurations."${hostname}" = nixpkgs.lib.nixosSystem {
+      specialArgs = {
+        inherit inputs username hostname system;
       };
-    in
-    {
-      nixosConfigurations."${hostname}" = nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit inputs username hostname system;
-        };
-        modules = [
-          ./hosts/JNix
+      modules = [
+        ./hosts/JNix
 
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              users."${username}" = {
-                imports = [
-                  ./home
-                ];
-              };
+        home-manager.nixosModules.home-manager
+        {
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            users."${username}" = {
+              imports = [
+                ./home
+              ];
             };
-          }
-        ];
-      };
+          };
+        }
+      ];
     };
+  };
 }

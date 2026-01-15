@@ -1,5 +1,9 @@
-{ config, pkgs, inputs, ... }:
 {
+  config,
+  pkgs,
+  inputs,
+  ...
+}: {
   services.xserver.windowManager.dwm.enable = true;
   services.xserver.enable = true;
   #services.xserver.displayManager.lightdm.enable = true;

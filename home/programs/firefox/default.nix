@@ -1,5 +1,9 @@
-{ config, pkgs, libs, ... }:
 {
+  config,
+  pkgs,
+  libs,
+  ...
+}: {
   #  nixpkgs.overlays =
   #    let
   #      # Change this to a rev sha to pin

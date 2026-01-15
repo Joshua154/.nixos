@@ -1,16 +1,19 @@
-{ config, pkgs, lib, ... }@args:
-
-{
-  #home.username = "${username}";
-  #home.homeDirectory = "/home/${username}";
+{pkgs, ...}: {
+  imports = [
+    ./programs
+    ./shell
+    ./windowManager
+  ];
 
   home.stateVersion = "25.05";
+
   home.packages = with pkgs; [
     texlive.combined.scheme-full
   ];
+
   home.file = {
     "Pictures" = {
-      source = ./images;
+      source = ../images;
       recursive = true;
     };
   };
@@ -23,17 +26,11 @@
   };
 
   home.pointerCursor = {
-    gtk.enable = true;
-    package = pkgs.bibata-cursors;
     name = "Bibata-Modern-Ice";
     size = 22;
+    package = pkgs.bibata-cursors;
+    gtk.enable = true;
   };
-
-  imports = [
-    ./shell
-    ./programs
-    ./windowManager
-  ];
 
   programs.home-manager.enable = true;
 }

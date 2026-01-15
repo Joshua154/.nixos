@@ -1,7 +1,18 @@
-{ config, pkgs, libs, ... }:
-{
+{pkgs, ...}: {
   home.packages = with pkgs; [
-    # jetbrains-toolbox
+    nodejs_22
+    burpsuite
+    httpie-desktop
+    termius
+
+    # Development Environments
+    python313
+    jdk17_headless
+    gradle
+    texlive.combined.scheme-full
+    vscode
+
+    # JetBrains
     jetbrains.gateway
     jetbrains.idea-ultimate
     jetbrains.pycharm-professional

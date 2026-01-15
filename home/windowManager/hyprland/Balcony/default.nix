@@ -1,16 +1,14 @@
-{ pkgs, ... }:
-
-let
-  dirs = [ "cava" "dunst" "hypr" "kitty" "rofi" "waybar" ];
-in
-{
+{pkgs, ...}: let
+  dirs = ["cava" "dunst" "hypr" "kitty" "rofi" "waybar"];
+in {
   xdg.configFile = builtins.listToAttrs (map (name: {
-    name = name;
-    value = {
-      source = ./${name};
-      recursive = true;
-    };
-  }) dirs);
+      name = name;
+      value = {
+        source = ./${name};
+        recursive = true;
+      };
+    })
+    dirs);
 
   home.packages = with pkgs; [
     waybar

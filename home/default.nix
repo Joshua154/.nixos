@@ -13,7 +13,7 @@
 
   home.file = {
     "Pictures" = {
-      source = ../images;
+      source = ./images;
       recursive = true;
     };
   };

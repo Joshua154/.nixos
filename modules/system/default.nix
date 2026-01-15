@@ -12,6 +12,8 @@
     ./users.nix
     ./virtualisation.nix
     ../ly.nix
+    ../qtile.nix
+    #../gdm.nix
     ../dwm.nix
   ];
 }

@@ -16,6 +16,7 @@
     termius
     kdePackages.kdeconnect-kde
     gnomeExtensions.gsconnect
+    gnomeExtensions.color-picker
     celluloid
     thunderbird
     bitwarden-desktop
@@ -41,6 +42,7 @@
     bluemail
 
     activitywatch
+    nodejs_22
   ];
 
   programs = {

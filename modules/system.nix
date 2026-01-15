@@ -3,6 +3,7 @@
   imports = [
     # ./hyprland.nix
     ./gdm.nix
+    ./dwm.nix
     #./sddm.nix
   ];
 
@@ -16,6 +17,7 @@
       "audio"
       "docker"
       "adbusers"
+      "dialout"
     ];
   };
 

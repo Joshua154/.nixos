@@ -11,7 +11,7 @@
     ./services.nix
     ./users.nix
     ./virtualisation.nix
-    ../gdm.nix
+    ../ly.nix
     ../dwm.nix
   ];
 }

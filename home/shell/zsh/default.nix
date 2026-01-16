@@ -51,6 +51,9 @@
       zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
       zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
+      eval "$(zoxide init --cmd cd zsh)"
+
+
       [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 
       # Optional Ghostty support

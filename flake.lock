@@ -417,6 +417,22 @@
         "type": "github"
       }
     },
+    "pandora-src": {
+      "locked": {
+        "lastModified": 1768444259,
+        "narHash": "sha256-s+d17CfxPG4knNxEwgAWnzRMoWXi3TBlyo/RiJIGxEM=",
+        "owner": "Ind-E",
+        "repo": "nixpkgs",
+        "rev": "e1d3d50dc148cd1de7fd9ce6b35fbe15ce507c36",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Ind-E",
+        "ref": "init-PandoraLauncher",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "pre-commit-hooks": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -446,7 +462,8 @@
         "home-manager": "home-manager",
         "hyprland": "hyprland",
         "nixpkgs": "nixpkgs_2",
-        "nixpkgs-25_05": "nixpkgs-25_05"
+        "nixpkgs-25_05": "nixpkgs-25_05",
+        "pandora-src": "pandora-src"
       }
     },
     "systems": {

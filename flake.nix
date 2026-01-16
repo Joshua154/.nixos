@@ -12,6 +12,8 @@
 
     hyprland.url = "github:hyprwm/Hyprland";
 
+    pandora-src.url = "github:Ind-E/nixpkgs/init-PandoraLauncher";
+
     # winboat = {
     #   url = "github:TibixDev/winboat";
     #   inputs.nixpkgs.follows = "nixpkgs";

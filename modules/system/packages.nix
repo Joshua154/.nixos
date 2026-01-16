@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }: {
   environment.systemPackages = with pkgs; [
@@ -31,6 +32,8 @@
     usbutils
 
     cloudflared
+
+    inputs.pandora-src.legacyPackages.${pkgs.system}.pandora-launcher
   ];
 
   environment.etc."current_system_packages".text = let

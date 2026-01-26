@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-25_05.url = "github:nixos/nixpkgs/nixos-25.05";
 
     flake-utils.url = "github:numtide/flake-utils";
 
@@ -13,7 +12,6 @@
     hyprland.url = "github:hyprwm/Hyprland";
 
     pandora-src.url = "github:Ind-E/nixpkgs/init-PandoraLauncher";
-    
 
     # winboat = {
     #   url = "github:TibixDev/winboat";

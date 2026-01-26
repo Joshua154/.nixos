@@ -6,8 +6,9 @@
   services.displayManager.ly = {
     enable = true;
     settings = {
-      #animation = "doom";
-      hide_borders = true;
+      hide_borders = false;
+      margin_box = "vcenter";
+      clear_password = true;
     };
   };
 }

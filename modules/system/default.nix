@@ -1,6 +1,7 @@
 {
   imports = [
     ./boot.nix
+    ./cloudflared.nix
     ./fonts.nix
     ./graphics.nix
     ./hardware.nix

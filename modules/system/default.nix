@@ -1,10 +1,12 @@
 {
   imports = [
+    ./android.nix
     ./boot.nix
     ./cloudflared.nix
     ./fonts.nix
     ./graphics.nix
     ./hardware.nix
+    ./localsend.nix
     ./network.nix
     ./nix.nix
     ./packages.nix
@@ -12,9 +14,9 @@
     ./services.nix
     ./users.nix
     ./virtualisation.nix
-    ../ly.nix
+    # ../ly.nix
     ../qtile.nix
-    #../gdm.nix
+    ../gdm.nix
     ../dwm.nix
   ];
 }

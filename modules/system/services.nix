@@ -66,4 +66,20 @@
     "d /home/${username}/Public 0755 ${username} users -"
     "d /home/${username}/privateShare 0777 ${username} users -"
   ];
+
+  # Enable mDNS for discovery
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    publish = {
+      enable = true;
+      userServices = true;
+    };
+  };
+
+  # Open the specific ports UxPlay needs
+  networking.firewall = {
+    allowedTCPPorts = [7000 7001 7100];
+    allowedUDPPorts = [5353 6000 6001 7011]; # 5353 is for mDNS
+  };
 }

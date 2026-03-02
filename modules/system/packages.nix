@@ -23,6 +23,7 @@
     #    kitty
 
     gimp
+    # krita
     samba
 
     btop-cuda
@@ -32,8 +33,6 @@
     usbutils
 
     cloudflared
-
-    inputs.pandora-src.legacyPackages.${pkgs.system}.pandora-launcher
   ];
 
   environment.etc."current_system_packages".text = let

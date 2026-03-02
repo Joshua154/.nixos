@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     cloudflared
+    # cloudflare-warp
   ];
 
   users.users.cloudflared = {
@@ -33,4 +34,6 @@
       CapabilityBoundingSet = "";
     };
   };
+
+  # services.cloudflare-warp.enable = true;
 }

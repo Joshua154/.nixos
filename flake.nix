@@ -11,7 +11,7 @@
 
     hyprland.url = "github:hyprwm/Hyprland";
 
-    pandora-src.url = "github:Ind-E/nixpkgs/init-PandoraLauncher";
+    nixpkgs-pandora.url = "github:NixOS/nixpkgs/pull/479811/head";
 
     # winboat = {
     #   url = "github:TibixDev/winboat";
@@ -23,6 +23,7 @@
     self,
     nixpkgs,
     home-manager,
+    nixpkgs-pandora,
     ...
   } @ inputs: let
     system = "x86_64-linux";
@@ -33,10 +34,16 @@
 
     nixosConfigurations."${hostname}" = nixpkgs.lib.nixosSystem {
       specialArgs = {
-        inherit inputs username hostname system;
+        inherit inputs username hostname system nixpkgs-pandora;
       };
       modules = [
         ./hosts/JNix
+
+        {
+          environment.systemPackages = [
+            nixpkgs-pandora.legacyPackages.x86_64-linux.pandoralauncher
+          ];
+        }
 
         home-manager.nixosModules.home-manager
         {

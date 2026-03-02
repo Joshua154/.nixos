@@ -385,6 +385,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-pandora": {
+      "locked": {
+        "lastModified": 1770055246,
+        "narHash": "sha256-n0duFgcVDzYSBWcZnke8NY2svXarwozutex7SVIcEvY=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "f10f92c23b2c933a8652407d2cd8cf47d9061cab",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "pull/479811/head",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1764517877,
@@ -397,22 +413,6 @@
       "original": {
         "owner": "nixos",
         "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "pandora-src": {
-      "locked": {
-        "lastModified": 1768444259,
-        "narHash": "sha256-s+d17CfxPG4knNxEwgAWnzRMoWXi3TBlyo/RiJIGxEM=",
-        "owner": "Ind-E",
-        "repo": "nixpkgs",
-        "rev": "e1d3d50dc148cd1de7fd9ce6b35fbe15ce507c36",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Ind-E",
-        "ref": "init-PandoraLauncher",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -446,7 +446,7 @@
         "home-manager": "home-manager",
         "hyprland": "hyprland",
         "nixpkgs": "nixpkgs_2",
-        "pandora-src": "pandora-src"
+        "nixpkgs-pandora": "nixpkgs-pandora"
       }
     },
     "systems": {

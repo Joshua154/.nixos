@@ -27,7 +27,7 @@
     efi.canTouchEfiVariables = true;
   };
 
-  services.tlp.enable = true;
+  # services.tlp.enable = true;
   powerManagement.enable = true;
 
   system.stateVersion = "25.05";

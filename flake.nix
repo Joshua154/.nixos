@@ -60,7 +60,7 @@
     nixosConfigurations = {
       JNix = mkHost "JNix" "joshua" [];
 
-      # laptop = mkHost "laptop" "joshua" [];
+      laptop = mkHost "laptop" "joshua" [];
       # desktop = mkHost "desktop" "joshua" [];
     };
   };

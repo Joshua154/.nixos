@@ -12,11 +12,6 @@
     hyprland.url = "github:hyprwm/Hyprland";
 
     nixpkgs-pandora.url = "github:NixOS/nixpkgs/pull/479811/head";
-
-    # winboat = {
-    #   url = "github:TibixDev/winboat";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
   };
 
   outputs = {
@@ -27,37 +22,46 @@
     ...
   } @ inputs: let
     system = "x86_64-linux";
-    hostname = "JNix";
-    username = "joshua";
+    
+    mkHost = hostname: username: modules:
+      nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          inherit inputs username hostname system nixpkgs-pandora;
+        };
+        modules = [
+          ./hosts/${hostname}
+          
+          # Pandora Launcher
+          {
+            environment.systemPackages = [
+              nixpkgs-pandora.legacyPackages.x86_64-linux.pandoralauncher
+            ];
+          }
+
+          # Home Manager
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users."${username}" = {
+                imports = [
+                  ./home
+                ];
+              };
+            };
+          }
+        ] ++ modules;
+      };
   in {
     formatter.${system} = nixpkgs.legacyPackages.${system}.alejandra;
 
-    nixosConfigurations."${hostname}" = nixpkgs.lib.nixosSystem {
-      specialArgs = {
-        inherit inputs username hostname system nixpkgs-pandora;
-      };
-      modules = [
-        ./hosts/JNix
+    # Define your hosts here
+    nixosConfigurations = {
+      JNix = mkHost "JNix" "joshua" [];
 
-        {
-          environment.systemPackages = [
-            nixpkgs-pandora.legacyPackages.x86_64-linux.pandoralauncher
-          ];
-        }
-
-        home-manager.nixosModules.home-manager
-        {
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            users."${username}" = {
-              imports = [
-                ./home
-              ];
-            };
-          };
-        }
-      ];
+      # laptop = mkHost "laptop" "joshua" [];
+      # desktop = mkHost "desktop" "joshua" [];
     };
   };
 }

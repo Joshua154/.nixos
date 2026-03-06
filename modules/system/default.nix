@@ -1,22 +1,8 @@
 {
+  # This module is for backwards compatibility
+  # Use modules/system/shared.nix for new configurations
   imports = [
-    ./android.nix
-    ./boot.nix
-    ./cloudflared.nix
-    ./fonts.nix
-    ./graphics.nix
-    ./hardware.nix
-    ./localsend.nix
-    ./network.nix
-    ./nix.nix
-    ./packages.nix
-    ./programs.nix
-    ./services.nix
-    ./users.nix
-    ./virtualisation.nix
-    # ../ly.nix
-    ../qtile.nix
-    ../gdm.nix
-    ../dwm.nix
+    ./shared.nix
+    ../profiles/display-managers/gdm.nix
   ];
 }

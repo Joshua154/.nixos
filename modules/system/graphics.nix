@@ -1,21 +1,20 @@
+{ config, pkgs, lib, ... }:
+
 {
-  services = {
-    xserver = {
-      enable = true;
-      xkb.layout = "us";
-    };
+  # Base graphics configuration
+  # For specific GPU configurations, use:
+  # - modules/profiles/hardware/nvidia.nix
+  # - modules/profiles/hardware/amd.nix
+  # - modules/profiles/hardware/intel.nix
 
-    desktopManager.gnome.enable = true;
-
-    # displayManager.sddm.enable = true;
+  services.xserver = {
+    enable = lib.mkDefault true;
+    xkb.layout = "us";
   };
 
-  xdg = {
-    portal.enable = true;
-    mime.defaultApplications = {
-      "image/jpeg" = ["qimgv.desktop"];
-      "image/jpg" = ["qimgv.desktop"];
-      "image/png" = ["qimgv.desktop"];
-    };
+  # Enable OpenGL by default
+  hardware.graphics = {
+    enable = lib.mkDefault true;
+    enable32Bit = lib.mkDefault true;
   };
 }

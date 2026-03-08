@@ -22,36 +22,38 @@
     ...
   } @ inputs: let
     system = "x86_64-linux";
-    
+
     mkHost = hostname: username: modules:
       nixpkgs.lib.nixosSystem {
         specialArgs = {
           inherit inputs username hostname system nixpkgs-pandora;
         };
-        modules = [
-          ./hosts/${hostname}
-          
-          # Pandora Launcher
-          {
-            environment.systemPackages = [
-              nixpkgs-pandora.legacyPackages.x86_64-linux.pandoralauncher
-            ];
-          }
+        modules =
+          [
+            ./hosts/${hostname}
 
-          # Home Manager
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              users."${username}" = {
-                imports = [
-                  ./home
-                ];
+            # Pandora Launcher
+            {
+              environment.systemPackages = [
+                nixpkgs-pandora.legacyPackages.x86_64-linux.pandoralauncher
+              ];
+            }
+
+            # Home Manager
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users."${username}" = {
+                  imports = [
+                    ./home
+                  ];
+                };
               };
-            };
-          }
-        ] ++ modules;
+            }
+          ]
+          ++ modules;
       };
   in {
     formatter.${system} = nixpkgs.legacyPackages.${system}.alejandra;
@@ -61,7 +63,7 @@
       JNix = mkHost "JNix" "joshua" [];
 
       laptop = mkHost "laptop" "joshua" [];
-      # desktop = mkHost "desktop" "joshua" [];
+      desktop = mkHost "desktop" "joshua" [];
     };
   };
 }

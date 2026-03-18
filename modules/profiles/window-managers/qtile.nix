@@ -7,7 +7,7 @@
     autoRepeatInterval = 35;
     windowManager.qtile = {
       enable = true;
-      configFile = ../../../qtile/qtile_config.py;
+      configFile = ./qtile/qtile_config.py;
     };
   };
 }

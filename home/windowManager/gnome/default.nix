@@ -2,6 +2,14 @@
   pkgs,
   ...
 }: rec {
+  home.file = {
+    ".themes" = {
+      source = ./themes;
+      recursive = true;
+    };
+  };
+
+
   home.packages = with pkgs.gnomeExtensions; [
     blur-my-shell
     copyous
@@ -116,7 +124,7 @@
 
     # Set the Shell Theme
     "org/gnome/shell/extensions/user-theme" = {
-      name = "Marble-purple-dark";
+      name = "Orchis-Purple-Dark-Compact";
     };
 
     # Interface Settings

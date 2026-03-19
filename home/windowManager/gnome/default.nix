@@ -14,7 +14,6 @@
     custom-hot-corners-extended
     gtile
     tailscale-status
-
     color-picker
     user-themes
   ];
@@ -32,7 +31,6 @@
       "user-theme@gnome-shell-extensions.gcampax.github.com"
     ]; 
     "org/gnome/shell".disabled-extensions = [];
-
     "org/gnome/shell/extensions/apps-menu" = { enabled = true; };
         
     # Configure blur-my-shell
@@ -57,7 +55,6 @@
       incognito-shortcut = ["<Shift><Super>less"];
     };
 
-
     # Configure Bluetooth Quick Connect
     "org/gnome/shell/extensions/bluetooth-quick-connect" = {
       keep-menu-on-toggle = true;
@@ -72,10 +69,12 @@
       panel-corners = true;
       screen-corners = true;
     };
+
     # Configure Rounded Window Corners
     "org/gnome/shell/extensions/rounded-window-corners" = {
       tweak-kitty-terminal = true;
     };
+
     # Configure Extended Hot Corners
     "org/gnome/shell/extensions/custom-hot-corners-extended/monitor-0-top-left-0" = {
       action = "toggle-overview";
@@ -94,18 +93,20 @@
     "org/gnome/shell/extensions/custom-hot-corners-extended/monitor-0-top-right-6" = {
       ctrl = true;
     };
-    
-    # Set the default window for primary applications
-    # "org/gnome/shell/extensions/auto-move-windows" = {
-    #   application-list = [
-    #     "firefox.desktop:1"
-    #     "codium.desktop:2"
-    #     "org.gnome.Console.desktop:3"
-    #     "slack.desktop:4"
-    #     "discord-ptb.desktop:4"
-    #   ];
-    # };
-    
+
+    # Configure Color Picker
+    "org/gnome/shell/extensions/color-picker" = {
+      enable-shortcut = true;
+      color-picker-shortcut = ["<Shift><Super>c"];
+    };
+
+    # Configure Clipboard History
+    "org/gnome/shell/extensions/clipboard-history" = {
+      history-size = 100000;
+      private-mode = false;
+      display-mode = 0;
+    };
+
     # The open applications bar
     "org/gnome/shell/extensions/window-list" = {
       grouping-mode = "always";
@@ -113,50 +114,95 @@
       display-all-workspaces = true;
     };
 
-    # Set the theme
+    # Set the Shell Theme
     "org/gnome/shell/extensions/user-theme" = {
-      # GTK Theme https://www.opendesktop.org/s/Gnome/p/1253385/
-      name = "Sweet-Dark";
+      name = "Marble-purple-dark";
     };
+
+    # Interface Settings
     "org/gnome/desktop/interface" = {
-      ## Theme stuff
-      cursor-theme = "Breeze_Snow";
-      # Icon theme https://www.pling.com/p/1305251/
-      icon-theme = "candy-icons";
-      gtk-theme = "Sweet-Dark";
-
-      ## Clock
+      color-scheme = "prefer-dark";
+      accent-color = "purple";
+      cursor-theme = "Bibata-Modern-Ice";
+      cursor-size = 22;
+      icon-theme = "Papirus-Dark";
+      gtk-theme = "Adwaita:dark";
+      clock-show-seconds = true;
       clock-show-weekday = false;
-      clock-show-date = true;
-
-      ## Font stuff
-      monospace-font-name = "RobotoMono Nerd Font 10";
-      font-antialiasing = "rgba";
+      clock-show-date = true; # Retained from original
+      toolkit-accessibility = true;
+      monospace-font-name = "RobotoMono Nerd Font 10"; # Retained from original
+      font-antialiasing = "rgba"; # Retained from original
     };
 
     # Keybindings
     "org/gnome/shell/keybindings" = {
-      show-screenshot-ui=["<Shift><Super>s"];
+      show-screenshot-ui = ["<Shift><Super>s"];
+    };
+    "org/gnome/desktop/wm/keybindings" = {
+      switch-applications = ["<Super>Tab"];
+      switch-applications-backward = ["<Shift><Super>Tab"];
+      switch-windows = ["<Alt>Tab"];
+      switch-windows-backward = ["<Shift><Alt>Tab"];
     };
 
+    # Window Manager Preferences
     "org/gnome/desktop/wm/preferences" = {
-      # Workspace Indicator panel
       workspace-names = [
         "Browser"
         "Code"
         "Chat"
       ];
-      # button-layout = "appmenu:minimize,maximize,close";
       button-layout = "appmenu:maximize,close";
     };
 
-    # Lock Screen Wallpaper
-    # "org/gnome/desktop/screensaver" = {
-    #   picture-uri = "file:///run/current-system/sw/share/backgrounds/gnome/drool-l.svg";
-    # };
+    # Mutter
+    "org/gnome/mutter" = {
+      dynamic-workspaces = true;
+      workspaces-only-on-primary = false;
+    };
+
+    # Input & Peripherals
+    "org/gnome/desktop/input-sources" = {
+      xkb-options = ["terminate:ctrl_alt_bksp"];
+    };
+    "org/gnome/desktop/peripherals/touchpad" = {
+      two-finger-scrolling-enabled = true;
+    };
+    "org/gnome/desktop/peripherals/keyboard" = {
+      numlock-state = true;
+    };
+
+    # Application Defaults: Text Editor
+    "org/gnome/TextEditor" = {
+      show-line-numbers = true;
+      style-scheme = "classic-dark";
+      wrap-text = false;
+    };
+
+    # Application Defaults: Nautilus / File Manager
+    "org/gnome/nautilus/preferences" = {
+      default-folder-viewer = "list-view";
+      search-filter-time-type = "last_modified";
+    };
+    "org/gnome/nautilus/list-view" = {
+      default-zoom-level = "small";
+      default-visible-columns = ["name" "size" "date_modified"];
+    };
+    
     # File Chooser
     "org/gtk/settings/file-chooser" = {
       sort-directories-first = true;
+    };
+
+    "org/gnome/shell" = {
+      favorite-apps = [
+        "com.mitchellh.ghostty.desktop"
+        "discord.desktop"
+        "firefox.desktop"
+        "beepertexts.desktop"
+        "spotify.desktop"
+      ];
     };
   };
 }

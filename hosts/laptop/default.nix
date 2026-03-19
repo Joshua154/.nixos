@@ -18,6 +18,7 @@
     # ../../modules/profiles/window-managers/hyprland.nix
     # ../../modules/profiles/window-managers/bspwm.nix
     ../../modules/profiles/window-managers/gnome.nix
+    # ../../modules/profiles/window-managers/qtile.nix
   ];
 
   networking.hostName = hostname;

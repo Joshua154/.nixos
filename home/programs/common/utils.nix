@@ -1,10 +1,9 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     activitywatch
-    gnomeExtensions.color-picker
-    gnomeExtensions.gsconnect
     gromit-mpx
     kdePackages.kdeconnect-kde
+    fastfetch
   ];
 
   services = {

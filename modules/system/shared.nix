@@ -14,6 +14,7 @@
     ./packages.nix
     ./programs.nix
     ./services.nix
+    ./tailscale.nix
     ./users.nix
     ./virtualisation.nix
   ];
@@ -23,7 +24,11 @@
 
   # XDG Portal configuration
   xdg = {
-    portal.enable = true;
+    portal = {
+      enable = true;
+      extraPortals = lib.mkDefault [ pkgs.xdg-desktop-portal-gtk ];
+      config.common.default = lib.mkDefault "*";
+    };
     mime.defaultApplications = {
       "image/jpeg" = ["qimgv.desktop"];
       "image/jpg" = ["qimgv.desktop"];

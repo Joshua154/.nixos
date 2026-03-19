@@ -14,8 +14,8 @@
 
     # JetBrains
     jetbrains.gateway
-    jetbrains.idea-ultimate
-    jetbrains.pycharm-professional
+    jetbrains.idea
+    jetbrains.pycharm
     jetbrains.ruby-mine
     jetbrains.webstorm
     jetbrains.clion

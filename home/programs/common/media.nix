@@ -2,7 +2,7 @@
   home.packages = with pkgs; [
     celluloid
     spotify
-    youtube-music
+    # pear-desktop (youtube-music)
     gthumb
   ];
 }

@@ -5,7 +5,7 @@
 
     legendary-gl
     prismlauncher
-    wineWowPackages.stable
+    wineWow64Packages.stable
     # lutris
     # protonup-qt
     # gamemode

@@ -127,6 +127,13 @@
       name = "Orchis-Purple-Dark-Compact";
     };
 
+    "org/gnome/shell/extensions/coverflowalttab" = {
+      bind-to-switch-windows = false;
+      icon-style = "Attached";
+      position= "Top";
+      switcher-looping-method = "Carousel";
+    };
+
     # Interface Settings
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";

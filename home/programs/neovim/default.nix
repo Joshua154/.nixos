@@ -13,11 +13,10 @@
     enable = true;
     viAlias = true;
     vimAlias = true;
-
-    #plugins = with pkgs.vimPlugins; [
-    #  cmp-nvim-lsp
-    #  vim-wakatime
-    #];
+    
+    plugins = with pkgs.vimPlugins; [
+      lazy-nvim
+    ];
   };
 
   home.packages = with pkgs;

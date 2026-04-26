@@ -11,7 +11,7 @@
 
     hyprland.url = "github:hyprwm/Hyprland";
 
-    nixpkgs-pandora.url = "github:NixOS/nixpkgs/pull/479811/head";
+    nixpkgs-pandora.url = "github:NixOS/nixpkgs/pull/510425/head";
   };
 
   outputs = {
@@ -35,7 +35,7 @@
             # Pandora Launcher
             {
               environment.systemPackages = [
-                nixpkgs-pandora.legacyPackages.x86_64-linux.pandoralauncher
+                nixpkgs-pandora.legacyPackages.x86_64-linux.pandora-launcher
               ];
             }
 

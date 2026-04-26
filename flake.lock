@@ -447,16 +447,16 @@
     },
     "nixpkgs-pandora": {
       "locked": {
-        "lastModified": 1770055246,
-        "narHash": "sha256-n0duFgcVDzYSBWcZnke8NY2svXarwozutex7SVIcEvY=",
+        "lastModified": 1776344877,
+        "narHash": "sha256-lGx6CkRnwTqpv47S0iSK42+IxAfU3PtEfP6KcU1Ewdc=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "f10f92c23b2c933a8652407d2cd8cf47d9061cab",
+        "rev": "be7e42a901322e63727a7d88d75b8baaa6c50891",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "ref": "pull/479811/head",
+        "ref": "pull/510425/head",
         "repo": "nixpkgs",
         "type": "github"
       }

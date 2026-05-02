@@ -13,6 +13,7 @@
     ./hardware-configuration.nix
 
     ../../modules/profiles/hardware/intel.nix
+    ../../modules/profiles/hardware/nvidia.nix
 
     # Display Manager
     # ../../modules/profiles/display-managers/ly.nix

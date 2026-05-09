@@ -5,6 +5,7 @@
   pkgs,
   system,
   username,
+  lib,
   ...
 }: {
   imports = [
@@ -28,9 +29,15 @@
 
   networking.hostName = hostname;
 
-  boot.loader = {
-    systemd-boot.enable = true;
-    efi.canTouchEfiVariables = true;
+  environment.systemPackages = [
+    pkgs.sbctl
+  ];
+
+  boot = {
+    lanzaboote = {
+      enable = true;
+      pkiBundle = "/etc/secureboot";
+    };
   };
 
   # services.tlp.enable = true;

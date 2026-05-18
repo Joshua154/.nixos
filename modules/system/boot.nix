@@ -9,5 +9,20 @@
       "evdi"
       "v4l2loopback"
     ];
+
+    # loader = {
+    #   grub = {
+    #     enable = true;
+    #     efiSupport = true;
+    #     efiInstallAsRemovable = true;
+    #     devices = ["nodev"];
+    #   };
+    # };
+
+    plymouth = {
+      enable = true;
+      theme = "bgrt"; # breeze
+    };
+    kernelParams = ["quiet" "splash"];
   };
 }

@@ -5,6 +5,7 @@
   pkgs,
   system,
   username,
+  lib,
   ...
 }: {
   imports = [
@@ -13,6 +14,7 @@
     ./hardware-configuration.nix
 
     ../../modules/profiles/hardware/intel.nix
+    ../../modules/profiles/hardware/nvidia.nix
 
     # Display Manager
     # ../../modules/profiles/display-managers/ly.nix
@@ -27,9 +29,15 @@
 
   networking.hostName = hostname;
 
-  boot.loader = {
-    systemd-boot.enable = true;
-    efi.canTouchEfiVariables = true;
+  environment.systemPackages = [
+    pkgs.sbctl
+  ];
+
+  boot = {
+    lanzaboote = {
+      enable = true;
+      pkiBundle = "/etc/secureboot";
+    };
   };
 
   # services.tlp.enable = true;

@@ -29,16 +29,16 @@
 
   networking.hostName = hostname;
 
-  environment.systemPackages = [
-    pkgs.sbctl
-  ];
+  # environment.systemPackages = [
+  #   pkgs.sbctl
+  # ];
 
-  boot = {
-    lanzaboote = {
-      enable = true;
-      pkiBundle = "/etc/secureboot";
-    };
-  };
+  # boot = {
+  #   lanzaboote = {
+  #     enable = true;
+  #     pkiBundle = "/etc/secureboot";
+  #   };
+  # };
 
   # services.tlp.enable = true;
   powerManagement.enable = true;

@@ -59,7 +59,7 @@
               };
             }
 
-            lanzaboote.nixosModules.lanzaboote
+            # lanzaboote.nixosModules.lanzaboote
           ]
           ++ modules;
       };

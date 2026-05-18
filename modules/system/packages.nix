@@ -9,6 +9,7 @@
     vim
     curl
     git
+    git-lfs
 
     vulkan-tools
     vulkan-loader

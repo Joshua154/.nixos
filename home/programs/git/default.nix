@@ -5,5 +5,7 @@
       email = "joshua.neunert@gmail.com";
       name = "Joshua Neunert";
     };
+
+    lfs.enable = true;
   };
 }

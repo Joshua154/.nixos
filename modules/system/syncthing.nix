@@ -14,13 +14,13 @@
 
       settings = {
         folders = {
-          "obsidian-vault_Studium" = {
-            path = "/home/${username}/Documents/Studium/26_SoSe";
+          "Studium" = {
+            path = "/home/${username}/Documents/Studium";
             devices = [ "ipad" ];
           };
         };
         devices = {
-          "ipad" = { id = "JAHWFNY"; };
+          "ipad" = { id = "4KIL5M2-K43IMIU-5GVF5W5-CJRRL2A-WKKKRVI-57J4LX7-PQJYCW6-UFDMAQZ"; };
         };
       };
     };

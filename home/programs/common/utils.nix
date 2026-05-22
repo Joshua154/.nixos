@@ -4,6 +4,7 @@
     gromit-mpx
     kdePackages.kdeconnect-kde
     fastfetch
+    nix-your-shell
   ];
 
   services = {

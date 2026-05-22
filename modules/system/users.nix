@@ -7,6 +7,7 @@
     defaultUserShell = pkgs.zsh;
 
     users.${username} = {
+      shell = pkgs.zsh;
       isNormalUser = true;
       description = username;
       extraGroups = [

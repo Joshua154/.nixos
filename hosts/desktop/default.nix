@@ -10,6 +10,7 @@
 }: {
   imports = [
     ../../modules/system/shared.nix
+    ../../modules/system/syncthing.nix
 
     ./hardware-configuration.nix
 

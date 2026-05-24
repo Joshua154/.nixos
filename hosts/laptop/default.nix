@@ -4,6 +4,7 @@
 {
   imports = [
     ../../modules/system/shared.nix
+    ../../modules/system/syncthing.nix
 
     ./hardware-configuration.nix
 
@@ -30,6 +31,8 @@
 
   # services.tlp.enable = true;
   powerManagement.enable = true;
+
+  programs.nix-ld.enable = true;
 
   system.stateVersion = "25.05";
 }

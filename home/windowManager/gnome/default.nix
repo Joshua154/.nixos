@@ -1,5 +1,6 @@
 {
   pkgs,
+  config,
   ...
 }: rec {
   home.file = {
@@ -12,15 +13,17 @@
 
   home.packages = with pkgs.gnomeExtensions; [
     blur-my-shell
-    copyous
+    # burn-my-windows
+    # copyous
+    # dash-to-panel
     gsconnect
-    removable-drive-menu
+    # removable-drive-menu
     bluetooth-quick-connect
     coverflow-alt-tab
     panel-corners
     # rounded-window-corners
-    custom-hot-corners-extended
-    gtile
+    # custom-hot-corners-extended
+    # gtile
     tailscale-status
     color-picker
     user-themes
@@ -186,6 +189,16 @@
     };
     "org/gnome/desktop/peripherals/keyboard" = {
       numlock-state = true;
+    };
+
+    "org/gnome/desktop/background" = {
+      picture-uri = "file://${config.home.homeDirectory}/Pictures/wallpaper/kurzgesagt-wallpapers/Galaxy_2.png";
+      picture-uri-dark = "file://${config.home.homeDirectory}/Pictures/wallpaper/kurzgesagt-wallpapers/Galaxies.png";
+      # picture-options = "zoom";
+    };
+
+    "org/gnome/desktop/screensaver" = {
+      picture-uri = "file://${config.home.homeDirectory}/Pictures/wallpaper/kurzgesagt-wallpapers/Stars.png";
     };
 
     # Application Defaults: Text Editor

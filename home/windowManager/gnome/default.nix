@@ -14,6 +14,7 @@
   home.packages = with pkgs.gnomeExtensions; [
     blur-my-shell
     # burn-my-windows
+    caffeine
     # copyous
     # dash-to-panel
     gsconnect

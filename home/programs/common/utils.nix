@@ -1,8 +1,8 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    activitywatch
+    # activitywatch
     gromit-mpx
-    kdePackages.kdeconnect-kde
+    # kdePackages.kdeconnect-kde
     fastfetch
     nix-your-shell
   ];

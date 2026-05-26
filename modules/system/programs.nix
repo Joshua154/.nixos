@@ -19,5 +19,12 @@
         droidcam-obs
       ];
     };
+
+
+
+    kdeconnect = {
+      enable = true;
+      package = pkgs.gnomeExtensions.gsconnect;
+    };
   };
 }

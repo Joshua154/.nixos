@@ -7,19 +7,21 @@
 
     # Development Environments
     python313
-    jdk17_headless
-    gradle
+    jdk21_headless
+    # gradle
     texlive.combined.scheme-full
     vscode
 
     # JetBrains
     jetbrains.gateway
-    jetbrains.idea
+    # jetbrains.idea
     jetbrains.pycharm
-    jetbrains.ruby-mine
-    jetbrains.webstorm
+    # jetbrains.ruby-mine
+    # jetbrains.webstorm
     jetbrains.clion
     jetbrains.datagrip
-    jetbrains.goland
+    # jetbrains.goland
+
+    jetbrains-toolbox
   ];
 }

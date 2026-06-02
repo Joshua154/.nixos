@@ -3,6 +3,7 @@
     # activitywatch
     gromit-mpx
     # kdePackages.kdeconnect-kde
+    kdePackages.kdenlive
     fastfetch
     nix-your-shell
   ];

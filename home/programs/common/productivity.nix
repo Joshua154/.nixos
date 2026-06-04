@@ -5,7 +5,7 @@
     bluemail
     obsidian
     pdfarranger
-    pureref
+    # pureref
     teams-for-linux
     thunderbird
     zathura

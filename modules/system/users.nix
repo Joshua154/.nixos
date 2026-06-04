@@ -15,6 +15,8 @@
         "audio"
         "dialout"
         "docker"
+        "kvm"
+        "libvirtd"
         "networkmanager"
         "video"
         "wheel"

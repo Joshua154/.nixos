@@ -5,5 +5,6 @@
     spice-gtk
     virt-manager
     virt-viewer
+    osinfo-db
   ];
 }

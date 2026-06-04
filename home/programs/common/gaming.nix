@@ -11,7 +11,7 @@
     # gamemode
     # mangohud
     # vkbasalt
-    heroic
+    # heroic
 
     # bottles
   ];

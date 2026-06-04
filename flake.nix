@@ -11,8 +11,6 @@
 
     hyprland.url = "github:hyprwm/Hyprland";
 
-    nixpkgs-pandora.url = "github:NixOS/nixpkgs/pull/510425/head";
-
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v1.0.0";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -23,7 +21,6 @@
     self,
     nixpkgs,
     home-manager,
-    nixpkgs-pandora,
     lanzaboote,
     ...
   } @ inputs: let
@@ -32,16 +29,15 @@
     mkHost = hostname: username: modules:
       nixpkgs.lib.nixosSystem {
         specialArgs = {
-          inherit inputs username hostname system nixpkgs-pandora lanzaboote;
+          inherit inputs username hostname system lanzaboote;
         };
         modules =
           [
             ./hosts/${hostname}
 
-            # Pandora Launcher
             {
-              environment.systemPackages = [
-                nixpkgs-pandora.legacyPackages.x86_64-linux.pandora-launcher
+              nixpkgs.config.permittedInsecurePackages = [
+                "electron-39.8.10"
               ];
             }
 

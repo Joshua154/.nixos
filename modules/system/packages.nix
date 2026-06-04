@@ -15,6 +15,8 @@
     vulkan-loader
     vulkan-validation-layers
 
+    pandora-launcher
+
     ethtool
 
     # hyprland

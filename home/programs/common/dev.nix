@@ -23,5 +23,8 @@
     # jetbrains.goland
 
     jetbrains-toolbox
+
+    devenv
+    secretspec
   ];
 }

@@ -24,7 +24,7 @@
     panel-corners
     # rounded-window-corners
     # custom-hot-corners-extended
-    # gtile
+    gtile
     tailscale-status
     color-picker
     user-themes

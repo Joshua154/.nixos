@@ -7,7 +7,7 @@
 
     # Development Environments
     python313
-    jdk21_headless
+    jdk25
     # gradle
     texlive.combined.scheme-full
     vscode
@@ -21,6 +21,7 @@
     jetbrains.clion
     jetbrains.datagrip
     # jetbrains.goland
+    jetbrains.rust-rover
 
     jetbrains-toolbox
 

@@ -1,6 +1,9 @@
-{ config, pkgs, lib, ... }:
-
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   # OpenGL
   hardware.graphics = {
     enable = true;
@@ -14,10 +17,10 @@
   };
 
   # Intel GPU driver
-  services.xserver.videoDrivers = [ "intel" ];
+  services.xserver.videoDrivers = ["intel"];
 
   # Intel specific options
-  boot.initrd.kernelModules = [ "i915" ];
+  boot.initrd.kernelModules = ["i915"];
 
   # hardware acceleration
   environment.sessionVariables = {

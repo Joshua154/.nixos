@@ -4,8 +4,6 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    flake-utils.url = "github:numtide/flake-utils";
-
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -47,6 +45,9 @@
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
+                extraSpecialArgs = {
+                  inherit inputs username hostname system;
+                };
                 users."${username}" = {
                   imports = [
                     ./home
@@ -54,8 +55,6 @@
                 };
               };
             }
-
-            # lanzaboote.nixosModules.lanzaboote
           ]
           ++ modules;
       };
@@ -64,8 +63,6 @@
 
     # Define your hosts here
     nixosConfigurations = {
-      JNix = mkHost "JNix" "joshua" [];
-
       laptop = mkHost "laptop" "joshua" [];
       desktop = mkHost "desktop" "joshua" [];
     };

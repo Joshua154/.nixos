@@ -1,6 +1,9 @@
-{ config, pkgs, lib, ... }:
-
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   # OpenGL
   hardware.graphics = {
     enable = true;
@@ -12,7 +15,7 @@
   };
 
   # nvidia driver for Xorg and Wayland
-  services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = ["nvidia"];
 
   hardware = {
     enableRedistributableFirmware = true;

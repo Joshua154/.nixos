@@ -1,6 +1,4 @@
-{ config, pkgs, lib, ... }:
-
-{
+{pkgs, ...}: {
   services.xserver.enable = true;
   services.desktopManager.gnome.enable = true;
 
@@ -12,11 +10,6 @@
     gst_all_1.gst-plugins-ugly
     gst_all_1.gst-libav
   ];
-  
-  services.displayManager.gdm = {
-    enable = lib.mkDefault true;
-  };
-
   # Exclude default GNOME applications
   environment.gnome.excludePackages = with pkgs; [
     gnome-tour

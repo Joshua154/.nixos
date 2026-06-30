@@ -10,7 +10,6 @@
     };
   };
 
-
   home.packages = with pkgs.gnomeExtensions; [
     blur-my-shell
     # burn-my-windows
@@ -31,20 +30,20 @@
   ];
 
   dconf.settings = {
-    "org/gnome/shell".enabled-extensions = (map (extension: extension.extensionUuid) home.packages)
-    ++ 
-    [
-      "auto-move-windows@gnome-shell-extensions.gcampax.github.com"
-      "window-list@gnome-shell-extensions.gcampax.github.com"
-      "places-menu@gnome-shell-extensions.gcampax.github.com"
-      "workspace-indicator@gnome-shell-extensions.gcampax.github.com"
-      "apps-menu@gnome-shell-extensions.gcampax.github.com"
-      "native-window-placement@gnome-shell-extensions.gcampax.github.com"
-      "user-theme@gnome-shell-extensions.gcampax.github.com"
-    ]; 
+    "org/gnome/shell".enabled-extensions =
+      (map (extension: extension.extensionUuid) home.packages)
+      ++ [
+        "auto-move-windows@gnome-shell-extensions.gcampax.github.com"
+        "window-list@gnome-shell-extensions.gcampax.github.com"
+        "places-menu@gnome-shell-extensions.gcampax.github.com"
+        "workspace-indicator@gnome-shell-extensions.gcampax.github.com"
+        "apps-menu@gnome-shell-extensions.gcampax.github.com"
+        "native-window-placement@gnome-shell-extensions.gcampax.github.com"
+        "user-theme@gnome-shell-extensions.gcampax.github.com"
+      ];
     "org/gnome/shell".disabled-extensions = [];
-    "org/gnome/shell/extensions/apps-menu" = { enabled = true; };
-        
+    "org/gnome/shell/extensions/apps-menu" = {enabled = true;};
+
     # Configure blur-my-shell
     "org/gnome/shell/extensions/blur-my-shell" = {
       brightness = 0.85;
@@ -94,7 +93,7 @@
     "org/gnome/shell/extensions/custom-hot-corners-extended/monitor-0-top-left-1" = {
       action = "move-win-to-prev-ws";
     };
-    "org/gnome/shell/extensions/custom-hot-corners-extended/monitor-0-top-left-6" = {  
+    "org/gnome/shell/extensions/custom-hot-corners-extended/monitor-0-top-left-6" = {
       action = "show-applications";
       ctrl = true;
     };
@@ -134,7 +133,7 @@
     "org/gnome/shell/extensions/coverflowalttab" = {
       bind-to-switch-windows = false;
       icon-style = "Attached";
-      position= "Top";
+      position = "Top";
       switcher-looping-method = "Carousel";
     };
 
@@ -218,7 +217,7 @@
       default-zoom-level = "small";
       default-visible-columns = ["name" "size" "date_modified"];
     };
-    
+
     # File Chooser
     "org/gtk/settings/file-chooser" = {
       sort-directories-first = true;

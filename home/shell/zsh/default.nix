@@ -1,5 +1,5 @@
 {
-  config,
+  hostname,
   pkgs,
   ...
 }: {
@@ -33,7 +33,7 @@
       c = "clear";
       uniupdate = "git add .; git commit -m update; git push";
       clip = "xclip -selection clipboard";
-      rebuild = "sudo nixos-rebuild switch --flake ~/.nixos#JNix --impure"; # TODO: use hostname variable here like `#${hostname}`
+      rebuild = "sudo nixos-rebuild switch --flake ~/.nixos#${hostname} --impure";
     };
 
     plugins = [
@@ -52,7 +52,7 @@
       zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
       eval "$(zoxide init --cmd cd zsh)"
-      
+
       # Inject nix-shell and nix develop with Zsh
       eval "$(nix-your-shell zsh)"
 
@@ -63,7 +63,7 @@
         builtin source "$GHOSTTY_RESOURCES_DIR/shell-integration/zsh/ghostty-integration"
       fi
 
-      
+
       bindkey '^[[1;5D' backward-word
       bindkey '^[[1;5C' forward-word
     '';

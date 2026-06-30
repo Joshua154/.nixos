@@ -1,6 +1,9 @@
-{ config, pkgs, lib, ... }:
-
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   # Base graphics configuration
   # For specific GPU configurations, use:
   # - modules/profiles/hardware/nvidia.nix

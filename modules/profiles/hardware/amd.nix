@@ -1,6 +1,9 @@
-{ config, pkgs, lib, ... }:
-
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   # OpenGL
   hardware.graphics = {
     enable = true;
@@ -8,10 +11,10 @@
   };
 
   # AMD GPU driver
-  services.xserver.videoDrivers = [ "amdgpu" ];
+  services.xserver.videoDrivers = ["amdgpu"];
 
   # AMD specific options
-  boot.initrd.kernelModules = [ "amdgpu" ];
+  boot.initrd.kernelModules = ["amdgpu"];
 
   environment.systemPackages = with pkgs; [
     radeontop
@@ -19,5 +22,5 @@
   ];
 
   # Better performance for AMD
-  boot.kernelParams = [ "amdgpu.ppfeaturemask=0xffffffff" ];
+  boot.kernelParams = ["amdgpu.ppfeaturemask=0xffffffff"];
 }

@@ -1,7 +1,10 @@
-{ config, pkgs, lib, ... }:
-
 {
-  imports = [ ./nvidia.nix ];
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
+  imports = [./nvidia.nix];
 
   # NVIDIA Prime configuration for laptops with hybrid graphics
   hardware.nvidia.prime = {
@@ -12,8 +15,8 @@
 
     # Offload mode - NVIDIA GPU is used on-demand
     offload = {
-      enable = lib.mkDefault true;
-      enableOffloadCmd = lib.mkDefault true;
+      enable = lib.mkForce true;
+      enableOffloadCmd = lib.mkForce true;
     };
 
     # Sync mode - always use NVIDIA GPU (better performance, worse battery)
@@ -28,4 +31,6 @@
       CPU_SCALING_GOVERNOR_ON_AC = "performance";
     };
   };
+
+  services.power-profiles-daemon.enable = lib.mkForce false;
 }

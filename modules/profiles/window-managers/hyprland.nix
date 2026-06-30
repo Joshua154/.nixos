@@ -1,6 +1,10 @@
-{ config, pkgs, lib, inputs, ... }:
-
 {
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}: {
   programs.hyprland = {
     enable = true;
     withUWSM = true;
@@ -31,7 +35,7 @@
   # XDG Portal for Hyprland
   xdg.portal = {
     enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    extraPortals = [pkgs.xdg-desktop-portal-gtk];
     config.common.default = "*";
   };
 

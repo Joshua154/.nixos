@@ -1,7 +1,10 @@
 # Shared configuration modules that are common across all hosts
-{ config, pkgs, lib, ... }:
-
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   imports = [
     ./android.nix
     ./boot.nix
@@ -26,7 +29,7 @@
   xdg = {
     portal = {
       enable = true;
-      extraPortals = lib.mkDefault [ pkgs.xdg-desktop-portal-gtk ];
+      extraPortals = lib.mkDefault [pkgs.xdg-desktop-portal-gtk];
       config.common.default = lib.mkDefault "*";
     };
     mime.defaultApplications = {

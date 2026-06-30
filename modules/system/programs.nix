@@ -8,7 +8,6 @@
     steam.enable = true;
 
     dconf.enable = true;
-    adb.enable = true;
     zsh.enable = true;
 
     noisetorch.enable = true;
@@ -19,6 +18,13 @@
       plugins = with pkgs.obs-studio-plugins; [
         droidcam-obs
       ];
+    };
+
+
+
+    kdeconnect = {
+      enable = true;
+      package = pkgs.gnomeExtensions.gsconnect;
     };
   };
 }

@@ -5,13 +5,13 @@
 
     legendary-gl
     prismlauncher
-    wineWowPackages.stable
+    wineWow64Packages.stable
     # lutris
     # protonup-qt
     # gamemode
     # mangohud
     # vkbasalt
-    heroic
+    # heroic
 
     # bottles
   ];

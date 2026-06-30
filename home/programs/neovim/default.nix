@@ -14,10 +14,12 @@
     viAlias = true;
     vimAlias = true;
 
-    #plugins = with pkgs.vimPlugins; [
-    #  cmp-nvim-lsp
-    #  vim-wakatime
-    #];
+    withRuby = false;
+    withPython3 = false;
+    
+    plugins = with pkgs.vimPlugins; [
+      lazy-nvim
+    ];
   };
 
   home.packages = with pkgs;

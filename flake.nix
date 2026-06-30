@@ -6,58 +6,68 @@
 
     flake-utils.url = "github:numtide/flake-utils";
 
-    home-manager.url = "github:nix-community/home-manager/release-25.11";
+    home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     hyprland.url = "github:hyprwm/Hyprland";
 
-    nixpkgs-pandora.url = "github:NixOS/nixpkgs/pull/479811/head";
-
-    # winboat = {
-    #   url = "github:TibixDev/winboat";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v1.0.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
     self,
     nixpkgs,
     home-manager,
-    nixpkgs-pandora,
+    lanzaboote,
     ...
   } @ inputs: let
     system = "x86_64-linux";
-    hostname = "JNix";
-    username = "joshua";
+
+    mkHost = hostname: username: modules:
+      nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          inherit inputs username hostname system lanzaboote;
+        };
+        modules =
+          [
+            ./hosts/${hostname}
+
+            {
+              nixpkgs.config.permittedInsecurePackages = [
+                "electron-39.8.10"
+              ];
+            }
+
+            # Home Manager
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users."${username}" = {
+                  imports = [
+                    ./home
+                  ];
+                };
+              };
+            }
+
+            # lanzaboote.nixosModules.lanzaboote
+          ]
+          ++ modules;
+      };
   in {
     formatter.${system} = nixpkgs.legacyPackages.${system}.alejandra;
 
-    nixosConfigurations."${hostname}" = nixpkgs.lib.nixosSystem {
-      specialArgs = {
-        inherit inputs username hostname system nixpkgs-pandora;
-      };
-      modules = [
-        ./hosts/JNix
+    # Define your hosts here
+    nixosConfigurations = {
+      JNix = mkHost "JNix" "joshua" [];
 
-        {
-          environment.systemPackages = [
-            nixpkgs-pandora.legacyPackages.x86_64-linux.pandoralauncher
-          ];
-        }
-
-        home-manager.nixosModules.home-manager
-        {
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            users."${username}" = {
-              imports = [
-                ./home
-              ];
-            };
-          };
-        }
-      ];
+      laptop = mkHost "laptop" "joshua" [];
+      desktop = mkHost "desktop" "joshua" [];
     };
   };
 }

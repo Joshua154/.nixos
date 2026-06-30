@@ -4,7 +4,7 @@
   username,
   ...
 }: {
-  programs.adb.enable = true;
+  # android-tools.enable = true;
 
   users.users.${username}.extraGroups = [
     "adbusers"

@@ -9,10 +9,13 @@
     vim
     curl
     git
+    git-lfs
 
     vulkan-tools
     vulkan-loader
     vulkan-validation-layers
+
+    pandora-launcher
 
     ethtool
 
@@ -33,6 +36,8 @@
     usbutils
 
     cloudflared
+
+    arduino-ide
   ];
 
   environment.etc."current_system_packages".text = let

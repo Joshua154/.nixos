@@ -52,7 +52,9 @@
       zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
       eval "$(zoxide init --cmd cd zsh)"
-
+      
+      # Inject nix-shell and nix develop with Zsh
+      eval "$(nix-your-shell zsh)"
 
       [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 
@@ -60,6 +62,10 @@
       if [[ -n "$GHOSTTY_RESOURCES_DIR" ]]; then
         builtin source "$GHOSTTY_RESOURCES_DIR/shell-integration/zsh/ghostty-integration"
       fi
+
+      
+      bindkey '^[[1;5D' backward-word
+      bindkey '^[[1;5C' forward-word
     '';
   };
 }

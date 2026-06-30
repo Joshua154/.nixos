@@ -8,18 +8,30 @@
   ...
 }: {
   imports = [
-    ../../modules/system
+    ../../modules/system/shared.nix
 
-    ./boot.nix
-    ./grub
+    # Hardware configuration
     ./hardware-configuration.nix
-    ./networking.nix
-    ./nvidia.nix
-    ./openconnect
-    ./zoom.nix
-  ];
+    ../../modules/profiles/boot/grub-efi-removable.nix
+    ./grub
+    
+    # Hardware-specific profiles
+    ../../modules/profiles/hardware/nvidia-prime.nix
+    ../../modules/profiles/networking/networkmanager.nix
 
-  programs.kdeconnect.enable = true;
+    # Display Manager
+    ../../modules/profiles/display-managers/gdm.nix
+
+    # Window Manager - choose one:
+    # ../../modules/profiles/window-managers/hyprland.nix
+    # ../../modules/profiles/window-managers/bspwm.nix
+    ../../modules/profiles/window-managers/gnome.nix
+
+    # Additional host-specific modules
+    ../../modules/profiles/networking/openconnect.nix
+    ../../modules/profiles/programs/kdeconnect.nix
+    ../../modules/profiles/programs/zoom.nix
+  ];
 
   system.stateVersion = "25.05";
 }

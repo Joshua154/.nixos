@@ -7,6 +7,7 @@
     defaultUserShell = pkgs.zsh;
 
     users.${username} = {
+      shell = pkgs.zsh;
       isNormalUser = true;
       description = username;
       extraGroups = [
@@ -14,9 +15,12 @@
         "audio"
         "dialout"
         "docker"
+        "kvm"
+        "libvirtd"
         "networkmanager"
         "video"
         "wheel"
+        "input"
       ];
     };
 

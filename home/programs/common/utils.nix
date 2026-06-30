@@ -1,10 +1,11 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    activitywatch
-    gnomeExtensions.color-picker
-    gnomeExtensions.gsconnect
+    # activitywatch
     gromit-mpx
-    kdePackages.kdeconnect-kde
+    # kdePackages.kdeconnect-kde
+    kdePackages.kdenlive
+    fastfetch
+    nix-your-shell
   ];
 
   services = {

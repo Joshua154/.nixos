@@ -6,6 +6,7 @@
     kdePackages.kdenlive
     fastfetch
     nix-your-shell
+    yazi
   ];
 
   services = {

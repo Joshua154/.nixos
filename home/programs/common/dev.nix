@@ -9,7 +9,7 @@
     python313
     jdk25
     # gradle
-    texlive.combined.scheme-full
+    texliveFull
     vscode
 
     # JetBrains

@@ -2,6 +2,7 @@
   imports = [
     ../../modules/system/shared.nix
     ../../modules/system/syncthing.nix
+    ../../modules/system/nfc.nix
 
     ./hardware-configuration.nix
 

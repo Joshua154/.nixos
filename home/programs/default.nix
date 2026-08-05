@@ -5,6 +5,7 @@
 
     ./neovim
     ./firefox
+    ./zen-browser
     ./vencord
 
     ./bottom.nix

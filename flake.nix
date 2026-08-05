@@ -9,8 +9,13 @@
 
     hyprland.url = "github:hyprwm/Hyprland";
 
+    zen-browser = {
+      url = "github:youwen5/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     lanzaboote = {
-      url = "github:nix-community/lanzaboote/v1.0.0";
+      url = "github:nix-community/lanzaboote";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -19,6 +24,7 @@
     self,
     nixpkgs,
     home-manager,
+    zen-browser,
     lanzaboote,
     ...
   } @ inputs: let

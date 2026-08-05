@@ -26,6 +26,5 @@
     jetbrains-toolbox
 
     devenv
-    secretspec
   ];
 }

@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{pkgs, config, ...}: {
   home.packages = with pkgs; [
     nodejs_22
     burpsuite
@@ -27,4 +27,13 @@
 
     devenv
   ];
+
+  # sharedModules = [
+  #   inputs.sops-nix.homeManagerModules.sops
+  # ];
+
+  # sops = {
+  #   defaultSopsFile = ./secrets.yaml;
+  #   age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
+  # };
 }

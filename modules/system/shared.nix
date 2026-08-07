@@ -16,6 +16,7 @@
     ./nix.nix
     ./packages.nix
     ./programs.nix
+    # ./secrets.nix
     ./services.nix
     ./tailscale.nix
     ./users.nix

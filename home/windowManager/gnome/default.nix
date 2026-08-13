@@ -227,7 +227,7 @@
       favorite-apps = [
         "com.mitchellh.ghostty.desktop"
         "discord.desktop"
-        "firefox.desktop"
+        "zen.desktop"
         "beepertexts.desktop"
         "spotify.desktop"
       ];

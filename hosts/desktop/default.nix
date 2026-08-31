@@ -8,7 +8,9 @@
     ../../modules/profiles/boot/secure-boot.nix
     ../../modules/profiles/hardware/intel.nix
     ../../modules/profiles/hardware/nvidia.nix
+
     ../../modules/profiles/networking/networkmanager.nix
+    ../../modules/profiles/networking/openconnect.nix
 
     # ../../modules/profiles/display-managers/ly.nix
     ../../modules/profiles/display-managers/gdm.nix

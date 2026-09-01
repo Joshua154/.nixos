@@ -1,6 +1,6 @@
 {
   pkgs,
-  config,
+  theme,
   ...
 }: rec {
   home.file = {
@@ -127,7 +127,7 @@
 
     # Set the Shell Theme
     "org/gnome/shell/extensions/user-theme" = {
-      name = "Orchis-Purple-Dark-Compact";
+      name = theme.gnomeShellTheme;
     };
 
     "org/gnome/shell/extensions/coverflowalttab" = {
@@ -139,12 +139,15 @@
 
     # Interface Settings
     "org/gnome/desktop/interface" = {
-      color-scheme = "prefer-dark";
-      accent-color = "purple";
-      cursor-theme = "Bibata-Modern-Ice";
-      cursor-size = 22;
-      icon-theme = "Papirus-Dark";
-      gtk-theme = "Adwaita:dark";
+      color-scheme =
+        if theme.dark
+        then "prefer-dark"
+        else "default";
+      accent-color = theme.accentName;
+      cursor-theme = theme.cursor.name;
+      cursor-size = theme.cursor.size;
+      icon-theme = theme.iconTheme;
+      gtk-theme = theme.gtkTheme;
       clock-show-seconds = true;
       clock-show-weekday = false;
       clock-show-date = true; # Retained from original
@@ -162,6 +165,18 @@
       switch-applications-backward = ["<Shift><Super>Tab"];
       switch-windows = ["<Alt>Tab"];
       switch-windows-backward = ["<Shift><Alt>Tab"];
+
+      # Position windows with Super + Shift + H/J/K/L (or the arrow keys).
+      move-to-side-w = ["<Shift><Super>h" "<Shift><Super>Left"];
+      move-to-side-s = ["<Shift><Super>j" "<Shift><Super>Down"];
+      move-to-side-n = ["<Shift><Super>k" "<Shift><Super>Up"];
+      move-to-side-e = ["<Shift><Super>l" "<Shift><Super>Right"];
+
+      # Move between workspaces, or carry the focused window along with Shift.
+      switch-to-workspace-left = ["<Control><Super>h" "<Control><Super>Left"];
+      switch-to-workspace-right = ["<Control><Super>l" "<Control><Super>Right"];
+      move-to-workspace-left = ["<Control><Shift><Super>h" "<Control><Shift><Super>Left"];
+      move-to-workspace-right = ["<Control><Shift><Super>l" "<Control><Shift><Super>Right"];
     };
 
     # Window Manager Preferences
@@ -192,13 +207,13 @@
     };
 
     "org/gnome/desktop/background" = {
-      picture-uri = "file://${config.home.homeDirectory}/Pictures/wallpaper/kurzgesagt-wallpapers/Galaxy_2.png";
-      picture-uri-dark = "file://${config.home.homeDirectory}/Pictures/wallpaper/kurzgesagt-wallpapers/Galaxies.png";
+      picture-uri = "file://${theme.wallpaper}";
+      picture-uri-dark = "file://${theme.wallpaper}";
       # picture-options = "zoom";
     };
 
     "org/gnome/desktop/screensaver" = {
-      picture-uri = "file://${config.home.homeDirectory}/Pictures/wallpaper/kurzgesagt-wallpapers/Stars.png";
+      picture-uri = "file://${theme.wallpaper}";
     };
 
     # Application Defaults: Text Editor

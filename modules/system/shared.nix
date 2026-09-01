@@ -1,8 +1,8 @@
 # Shared configuration modules that are common across all hosts
 {
-  config,
   pkgs,
   lib,
+  settings,
   ...
 }: {
   imports = [
@@ -10,6 +10,7 @@
     ./boot.nix
     ./cloudflared.nix
     ./fonts.nix
+    ./graphics.nix
     ./hardware.nix
     ./localsend.nix
     ./network.nix
@@ -22,6 +23,8 @@
     ./users.nix
     ./virtualisation.nix
   ];
+
+  system.stateVersion = settings.stateVersion;
 
   # Graphics configuration - default without specific GPU
   services.xserver.enable = lib.mkDefault true;

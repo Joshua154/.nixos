@@ -1,15 +1,17 @@
 {
   pkgs,
-  username,
+  settings,
   ...
-}: {
+}: let
+  inherit (settings.user) name fullName;
+in {
   users = {
     defaultUserShell = pkgs.zsh;
 
-    users.${username} = {
+    users.${name} = {
       shell = pkgs.zsh;
       isNormalUser = true;
-      description = username;
+      description = fullName;
       extraGroups = [
         "adbusers"
         "audio"

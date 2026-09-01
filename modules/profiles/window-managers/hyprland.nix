@@ -1,20 +1,17 @@
 {
-  config,
   pkgs,
-  lib,
   inputs,
   ...
 }: {
   programs.hyprland = {
     enable = true;
     withUWSM = true;
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
   };
 
   # env vars
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
-    WLR_NO_HARDWARE_CURSORS = lib.mkDefault "1";
   };
 
   # Essential Hyprland tools
@@ -36,7 +33,13 @@
   xdg.portal = {
     enable = true;
     extraPortals = [pkgs.xdg-desktop-portal-gtk];
-    config.common.default = "*";
+    config.hyprland = {
+      default = [
+        "hyprland"
+        "gtk"
+      ];
+      "org.freedesktop.impl.portal.FileChooser" = ["gtk"];
+    };
   };
 
   # Enable required services

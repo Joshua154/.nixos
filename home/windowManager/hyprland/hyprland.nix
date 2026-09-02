@@ -45,6 +45,57 @@
     echo "awww did not become ready within 10 seconds" >&2
     exit 1
   '';
+  volumeControl = pkgs.writeShellScript "volume-control" ''
+    set -eu
+
+    case "''${1:-}" in
+      up) ${pkgs.wireplumber}/bin/wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+ ;;
+      down) ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- ;;
+      mute) ${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle ;;
+      *) exit 2 ;;
+    esac
+
+    status="$(${pkgs.wireplumber}/bin/wpctl get-volume @DEFAULT_AUDIO_SINK@)"
+    level="$(printf '%s\n' "$status" | ${pkgs.gawk}/bin/awk '{ printf "%.0f", $2 * 100 }')"
+
+    if printf '%s\n' "$status" | ${pkgs.gnugrep}/bin/grep --quiet MUTED; then
+      icon="󰝟"
+      label="Muted"
+    elif [ "$level" -lt 34 ]; then
+      icon=""
+      label="Volume"
+    elif [ "$level" -lt 67 ]; then
+      icon=""
+      label="Volume"
+    else
+      icon=""
+      label="Volume"
+    fi
+
+    ${pkgs.dunst}/bin/dunstify \
+      -a "Quick settings" \
+      -u low \
+      -h string:x-dunst-stack-tag:volume \
+      -h int:value:"$level" \
+      "$icon  $label" "$level%"
+  '';
+  brightnessControl = pkgs.writeShellScript "brightness-control" ''
+    set -eu
+
+    case "''${1:-}" in
+      up) ${pkgs.brightnessctl}/bin/brightnessctl set +5% ;;
+      down) ${pkgs.brightnessctl}/bin/brightnessctl set 5%- ;;
+      *) exit 2 ;;
+    esac
+
+    level="$(${pkgs.brightnessctl}/bin/brightnessctl -m | ${pkgs.gawk}/bin/awk -F, '{ gsub(/%/, "", $4); print $4 }')"
+    ${pkgs.dunst}/bin/dunstify \
+      -a "Quick settings" \
+      -u low \
+      -h string:x-dunst-stack-tag:brightness \
+      -h int:value:"$level" \
+      "󰃠  Brightness" "$level%"
+  '';
   execBind = keys: command: "hl.bind(${toLua keys}, hl.dsp.exec_cmd(${toLua command}))";
   dispatchBind = keys: dispatcher: "hl.bind(${toLua keys}, ${dispatcher})";
   repeatExecBind = keys: command: ''
@@ -55,7 +106,7 @@
     key = toString (lib.mod i 10);
   in ''
     hl.bind("SUPER + ${key}", hl.dsp.focus({ workspace = "${workspace}" }))
-    hl.bind("SUPER + SHIFT + ${key}", hl.dsp.window.move({ workspace = "${workspace}" }))
+    hl.bind("SUPER + SHIFT + ${key}", hl.dsp.window.move({ workspace = "${workspace}", follow = false }))
   '') (lib.range 1 10);
 in {
   # Bind the daemon to the Hyprland session so GNOME sessions do not start it.
@@ -86,8 +137,8 @@ in {
 
       general = {
         layout = "dwindle";
-        gaps_in = 6;
-        gaps_out = 12;
+        gaps_in = 7;
+        gaps_out = 14;
         border_size = 2;
         col = {
           active_border = {
@@ -103,20 +154,23 @@ in {
       };
 
       decoration = {
-        rounding = 12;
-        active_opacity = 0.96;
-        inactive_opacity = 0.92;
+        rounding = 16;
+        active_opacity = 0.98;
+        inactive_opacity = 0.94;
+        dim_inactive = true;
+        dim_strength = 0.035;
         blur = {
           enabled = true;
-          size = 8;
-          passes = 2;
+          size = 10;
+          passes = 3;
           new_optimizations = true;
+          ignore_opacity = true;
         };
         shadow = {
           enabled = true;
-          range = 20;
-          render_power = 3;
-          color = "rgba(${c.background}cc)";
+          range = 28;
+          render_power = 4;
+          color = "rgba(${c.background}bb)";
         };
       };
 
@@ -142,9 +196,11 @@ in {
       hl.env("HYPRCURSOR_SIZE", ${toLua (toString theme.cursor.size)})
 
       hl.curve("easeOut", { type = "bezier", points = { {0.16, 1}, {0.3, 1} } })
-      hl.animation({ leaf = "windows", enabled = true, speed = 4, bezier = "easeOut", style = "popin 80%" })
+      hl.curve("workspace", { type = "bezier", points = { {0.22, 1}, {0.36, 1} } })
+      hl.animation({ leaf = "windows", enabled = true, speed = 4, bezier = "easeOut", style = "popin 86%" })
+      hl.animation({ leaf = "border", enabled = true, speed = 6, bezier = "easeOut" })
       hl.animation({ leaf = "fade", enabled = true, speed = 4, bezier = "easeOut" })
-      hl.animation({ leaf = "workspaces", enabled = true, speed = 5, bezier = "easeOut", style = "slide" })
+      hl.animation({ leaf = "workspaces", enabled = true, speed = 5, bezier = "workspace", style = "slide" })
 
       hl.on("hyprland.start", function()
         hl.exec_cmd(${toLua (toString setWallpapers)})
@@ -165,6 +221,8 @@ in {
 
       ${execBind "SUPER + Return" "ghostty"}
       ${execBind "SUPER + D" "rofi -show drun"}
+      ${execBind "SUPER + SPACE" "rofi -show drun"}
+      ${execBind "SUPER + TAB" "rofi -show window"}
       ${execBind "SUPER + B" "zen"}
       ${execBind "SUPER + E" "nautilus"}
       ${execBind "SUPER + M" "alacritty"}
@@ -175,7 +233,7 @@ in {
       ${dispatchBind "SUPER + T" ''hl.dsp.window.float({ action = "toggle" })''}
       ${dispatchBind "SUPER + P" "hl.dsp.window.pseudo()"}
       ${execBind "SUPER + L" "hyprlock"}
-      ${execBind "SUPER + SHIFT + E" "wlogout"}
+      ${execBind "SUPER + SHIFT + E" "wlogout -b 3 -L 300 -R 300 -T 220 -B 220"}
       ${execBind "SUPER + SHIFT + C" "hyprpicker -a"}
       ${execBind "SUPER + SHIFT + S" ''grim -g "$(slurp)" - | swappy -f -''}
       ${execBind "SUPER + SHIFT + R" ''wf-recorder -g "$(slurp)"''}
@@ -191,8 +249,8 @@ in {
       ${dispatchBind "SUPER + SHIFT + right" ''hl.dsp.window.move({ direction = "right" })''}
 
       ${workspaceBinds}
-      ${dispatchBind "SUPER + CTRL + left" ''hl.dsp.focus({ workspace = "-1" })''}
-      ${dispatchBind "SUPER + CTRL + right" ''hl.dsp.focus({ workspace = "+1" })''}
+      ${dispatchBind "SUPER + CTRL + left" ''hl.dsp.focus({ workspace = "e-1" })''}
+      ${dispatchBind "SUPER + CTRL + right" ''hl.dsp.focus({ workspace = "e+1" })''}
       ${dispatchBind "SUPER + CTRL + SHIFT + left" ''hl.dsp.window.move({ workspace = "-1" })''}
       ${dispatchBind "SUPER + CTRL + SHIFT + right" ''hl.dsp.window.move({ workspace = "+1" })''}
       ${dispatchBind "SUPER + mouse_down" ''hl.dsp.focus({ workspace = "e+1" })''}
@@ -200,12 +258,12 @@ in {
       hl.bind("SUPER + mouse:272", hl.dsp.window.drag(), { mouse = true })
       hl.bind("SUPER + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
-      ${repeatExecBind "XF86AudioRaiseVolume" "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+"}
-      ${repeatExecBind "XF86AudioLowerVolume" "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"}
-      ${repeatExecBind "XF86AudioMute" "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"}
+      ${repeatExecBind "XF86AudioRaiseVolume" "${volumeControl} up"}
+      ${repeatExecBind "XF86AudioLowerVolume" "${volumeControl} down"}
+      ${repeatExecBind "XF86AudioMute" "${volumeControl} mute"}
       ${repeatExecBind "XF86AudioMicMute" "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"}
-      ${repeatExecBind "XF86MonBrightnessUp" "brightnessctl set +5%"}
-      ${repeatExecBind "XF86MonBrightnessDown" "brightnessctl set 5%-"}
+      ${repeatExecBind "XF86MonBrightnessUp" "${brightnessControl} up"}
+      ${repeatExecBind "XF86MonBrightnessDown" "${brightnessControl} down"}
       ${execBind "XF86AudioPlay" "playerctl play-pause"}
       ${execBind "XF86AudioNext" "playerctl next"}
       ${execBind "XF86AudioPrev" "playerctl previous"}

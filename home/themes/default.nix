@@ -57,16 +57,16 @@ in {
     };
     gnomeShellTheme = "Orchis-Purple-Dark-Compact";
     colors = {
-      background = "1a1b26";
-      surface = "252733";
-      overlay = "3b4252";
-      foreground = "e5e9f0";
-      muted = "8a909e";
-      accent = "5e81ac";
-      secondary = "88c0d0";
-      red = "fb958b";
-      yellow = "ecd3a0";
-      green = "a1c999";
+      background = "0f1020";
+      surface = "1a1b2e";
+      overlay = "2b2d47";
+      foreground = "e8eaf6";
+      muted = "969ab8";
+      accent = "7aa2f7";
+      secondary = "bb9af7";
+      red = "ff7a93";
+      yellow = "e9c46a";
+      green = "73daca";
     };
   };
 

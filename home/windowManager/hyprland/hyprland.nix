@@ -1,12 +1,50 @@
 {
   host,
   lib,
+  pkgs,
   theme,
+  wallpaper,
   ...
 }: let
   c = theme.colors;
   toLua = lib.generators.toLua {};
-  renderMonitors = lib.concatMapStringsSep "\n" (monitor: "hl.monitor(${toLua monitor})") host.hyprland.monitors;
+  monitorConfig = monitor: builtins.removeAttrs monitor ["wallpaper"];
+  renderMonitors =
+    lib.concatMapStringsSep "\n" (
+      monitor: "hl.monitor(${toLua (monitorConfig monitor)})"
+    )
+    host.hyprland.monitors;
+  awww = lib.getExe pkgs.awww;
+  setWallpaperCommand = monitor: let
+    output = monitor.output or "";
+    outputOption = lib.optionalString (output != "") " --outputs ${lib.escapeShellArg output}";
+    image = lib.escapeShellArg (toString (wallpaper.forMonitor monitor));
+    command = "${awww} img${outputOption} --transition-type grow --transition-duration 1 ${image}";
+  in
+    if output == ""
+    then command
+    else ''
+      if printf '%s\n' "$awww_outputs" | ${pkgs.gnugrep}/bin/grep --fixed-strings --quiet -- ${lib.escapeShellArg ": ${output}:"}; then
+        ${command}
+      fi
+    '';
+  setWallpapers = pkgs.writeShellScript "set-wallpapers" ''
+    set -eu
+
+    exec 9>"''${XDG_RUNTIME_DIR}/nixos-wallpapers.lock"
+    ${pkgs.util-linux}/bin/flock --nonblock 9 || exit 0
+
+    for attempt in {1..100}; do
+      if awww_outputs="$(${awww} query 2>/dev/null)"; then
+        ${lib.concatMapStringsSep "\n" setWallpaperCommand host.hyprland.monitors}
+        exit 0
+      fi
+      ${pkgs.coreutils}/bin/sleep 0.1
+    done
+
+    echo "awww did not become ready within 10 seconds" >&2
+    exit 1
+  '';
   execBind = keys: command: "hl.bind(${toLua keys}, hl.dsp.exec_cmd(${toLua command}))";
   dispatchBind = keys: dispatcher: "hl.bind(${toLua keys}, ${dispatcher})";
   repeatExecBind = keys: command: ''
@@ -20,6 +58,13 @@
     hl.bind("SUPER + SHIFT + ${key}", hl.dsp.window.move({ workspace = "${workspace}" }))
   '') (lib.range 1 10);
 in {
+  # Bind the daemon to the Hyprland session so GNOME sessions do not start it.
+  wayland.systemd.target = "hyprland-session.target";
+  services.awww = {
+    enable = true;
+    extraArgs = ["--no-cache"];
+  };
+
   wayland.windowManager.hyprland = {
     enable = true;
     configType = "lua";
@@ -102,11 +147,20 @@ in {
       hl.animation({ leaf = "workspaces", enabled = true, speed = 5, bezier = "easeOut", style = "slide" })
 
       hl.on("hyprland.start", function()
-        hl.exec_cmd("awww-daemon")
-        hl.exec_cmd(${toLua "awww img '${theme.wallpaper}' --transition-type grow --transition-duration 1"})
+        hl.exec_cmd(${toLua (toString setWallpapers)})
         hl.exec_cmd("wl-paste --type text --watch cliphist store")
         hl.exec_cmd("wl-paste --type image --watch cliphist store")
         hl.exec_cmd("blueman-applet")
+      end)
+
+      -- Re-apply the configured mapping when an output is hot-plugged.
+      hl.on("monitor.added", function()
+        hl.exec_cmd(${toLua (toString setWallpapers)})
+      end)
+
+      -- Make a changed wallpaper ID effective after `hyprctl reload`.
+      hl.on("config.reloaded", function()
+        hl.exec_cmd(${toLua (toString setWallpapers)})
       end)
 
       ${execBind "SUPER + Return" "ghostty"}

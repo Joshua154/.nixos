@@ -1,4 +1,44 @@
-{
+let
+  kurzgesagtWallpaperDirectory = builtins.path {
+    path = ../images/wallpaper/kurzgesagt-wallpapers;
+    name = "kurzgesagt-wallpapers";
+  };
+  kurzgesagtWallpaper = name: "${kurzgesagtWallpaperDirectory}/${name}";
+
+  # `wallpaper = 4` selects Asteroids.png.
+  kurzgesagtWallpapers = map kurzgesagtWallpaper [
+    "Asteroid_Miner_1.png"
+    "Asteroid_Miner_2.png"
+    "Asteroid_Miner_3.png"
+    "Asteroids.png"
+    "Baby_Star.png"
+    "Black Hole_1.png"
+    "Black Hole_2.png"
+    "Black_Hole_3.png"
+    "Cloudy Quasar_1.png"
+    "Cloudy Quasar_2.png"
+    "Contemplative Cosmonaut_1.png"
+    "Contemplative Cosmonaut_2.png"
+    "Contemplative Cosmonaut_3.png"
+    "Contemplative Cosmonaut_4.png"
+    "Cosmic_Islands.png"
+    "Dyson_Sphere.png"
+    "Fleet.png"
+    "Galaxies.png"
+    "Galaxy_1.png"
+    "Galaxy_2.png"
+    "Galaxy_3.png"
+    "Mars.png"
+    "On A Moon.png"
+    "Ringed_Earth.jpg"
+    "Satellite over Earth.png"
+    "Solar System.png"
+    "Stars.png"
+    "Stellar Phenomenon.png"
+    "Unknown Lifeform.png"
+    "Alien_Clouds.png"
+  ];
+in {
   balcony = {
     displayName = "Balcony";
     dark = true;
@@ -9,7 +49,12 @@
       name = "Bibata-Modern-Ice";
       size = 22;
     };
-    wallpaper = ../images/wallpaper/kurzgesagt-wallpapers/Galaxy_2.png;
+    wallpapers = {
+      lock = kurzgesagtWallpaper "Asteroids.png";
+      default = kurzgesagtWallpaper "Galaxy_2.png";
+
+      screens = kurzgesagtWallpapers;
+    };
     gnomeShellTheme = "Orchis-Purple-Dark-Compact";
     colors = {
       background = "1a1b26";
@@ -35,7 +80,11 @@
       name = "Bibata-Modern-Ice";
       size = 22;
     };
-    wallpaper = ../images/wallpaper/nix-wallpaper-nineish-catppuccin-mocha-alt.png;
+    wallpapers = {
+      lock = ../images/wallpaper/nix-wallpaper-nineish-catppuccin-mocha-alt.png;
+      default = ../images/wallpaper/nix-wallpaper-nineish-catppuccin-mocha-alt.png;
+      screens = kurzgesagtWallpapers;
+    };
     gnomeShellTheme = "Orchis-Purple-Dark-Compact";
     colors = {
       background = "1e1e2e";

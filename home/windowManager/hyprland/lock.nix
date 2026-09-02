@@ -1,10 +1,14 @@
-{theme, ...}: let
+{
+  theme,
+  wallpaper,
+  ...
+}: let
   c = theme.colors;
 in {
   xdg.configFile."hypr/hyprlock.conf".text = ''
     background {
       monitor =
-      path = ${theme.wallpaper}
+      path = ${wallpaper.lock}
       blur_passes = 3
       blur_size = 8
     }

@@ -1,4 +1,5 @@
 {
+  host,
   lib,
   pkgs,
   settings,
@@ -8,6 +9,30 @@
   theme =
     themes.${settings.theme}
     or (throw "Unknown theme '${settings.theme}'. Available themes: ${lib.concatStringsSep ", " (builtins.attrNames themes)}");
+  wallpaperFor = monitor: let
+    selection = monitor.wallpaper or null;
+    choices = theme.wallpapers.screens or [];
+    choiceCount = builtins.length choices;
+  in
+    if selection == null
+    then theme.wallpapers.default
+    else if builtins.isInt selection && selection >= 1 && selection <= choiceCount
+    then builtins.elemAt choices (selection - 1)
+    else
+      throw ''
+        Invalid wallpaper selection '${toString selection}' for monitor '${monitor.output}'.
+        Theme '${settings.theme}' provides wallpaper IDs 1-${toString choiceCount}; omit the
+        monitor's wallpaper attribute to use the theme default.
+      '';
+  configuredMonitors = host.hyprland.monitors or [];
+  wallpaper = {
+    inherit (theme.wallpapers) default lock;
+    forMonitor = wallpaperFor;
+    desktop =
+      if configuredMonitors == []
+      then theme.wallpapers.default
+      else wallpaperFor (builtins.head configuredMonitors);
+  };
 in {
   imports = [
     ./programs
@@ -15,7 +40,7 @@ in {
     ./windowManager
   ];
 
-  _module.args = {inherit theme;};
+  _module.args = {inherit theme wallpaper;};
 
   home = {
     username = settings.user.name;

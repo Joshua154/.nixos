@@ -53,6 +53,7 @@
             mode = "1920x1080@60";
             position = "0x0";
             scale = 1;
+            wallpaper = 4;
           }
         ];
         battery = true;
@@ -82,11 +83,27 @@
       nixLd = false;
       hyprland = {
         monitors = [
+          # Fallback for docks and newly attached outputs.
           {
             output = "";
-            mode = "preferred";
+            mode = "highrr";
             position = "auto";
             scale = 1;
+            wallpaper = 4;
+          }
+          {
+            output = "DP-2";
+            mode = "2560x1440@180";
+            position = "0x0";
+            scale = 1;
+            wallpaper = 4;
+          }
+          {
+            output = "DP-3";
+            mode = "2560x1440@180";
+            position = "2560x0";
+            scale = 1;
+            wallpaper = 4;
           }
         ];
         battery = false;

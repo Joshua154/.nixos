@@ -1,6 +1,7 @@
 {
   pkgs,
   theme,
+  wallpaper,
   ...
 }: rec {
   home.file = {
@@ -207,13 +208,13 @@
     };
 
     "org/gnome/desktop/background" = {
-      picture-uri = "file://${theme.wallpaper}";
-      picture-uri-dark = "file://${theme.wallpaper}";
+      picture-uri = "file://${wallpaper.desktop}";
+      picture-uri-dark = "file://${wallpaper.desktop}";
       # picture-options = "zoom";
     };
 
     "org/gnome/desktop/screensaver" = {
-      picture-uri = "file://${theme.wallpaper}";
+      picture-uri = "file://${wallpaper.lock}";
     };
 
     # Application Defaults: Text Editor

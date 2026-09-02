@@ -18,7 +18,6 @@
     rofi
     slurp
     swappy
-    awww
     wf-recorder
     wl-clipboard
     wlogout

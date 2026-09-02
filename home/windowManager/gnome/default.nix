@@ -40,7 +40,6 @@
         "workspace-indicator@gnome-shell-extensions.gcampax.github.com"
         "apps-menu@gnome-shell-extensions.gcampax.github.com"
         "native-window-placement@gnome-shell-extensions.gcampax.github.com"
-        "user-theme@gnome-shell-extensions.gcampax.github.com"
       ];
     "org/gnome/shell".disabled-extensions = [];
     "org/gnome/shell/extensions/apps-menu" = {enabled = true;};
@@ -210,7 +209,7 @@
     "org/gnome/desktop/background" = {
       picture-uri = "file://${wallpaper.desktop}";
       picture-uri-dark = "file://${wallpaper.desktop}";
-      # picture-options = "zoom";
+      picture-options = "zoom";
     };
 
     "org/gnome/desktop/screensaver" = {

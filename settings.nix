@@ -71,7 +71,10 @@
           "openconnect"
         ];
         displayManager = "gdm";
-        desktops = ["gnome"];
+        desktops = [
+          "gnome"
+          "hyprland"
+        ];
         programs = ["kdeconnect"];
         services = ["syncthing"];
       };

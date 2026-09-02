@@ -4,15 +4,18 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    flake-utils.url = "github:numtide/flake-utils";
-
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     hyprland.url = "github:hyprwm/Hyprland";
 
+    zen-browser = {
+      url = "github:youwen5/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     lanzaboote = {
-      url = "github:nix-community/lanzaboote/v1.0.0";
+      url = "github:nix-community/lanzaboote";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -21,53 +24,45 @@
     self,
     nixpkgs,
     home-manager,
+    zen-browser,
     lanzaboote,
     ...
   } @ inputs: let
-    system = "x86_64-linux";
+    settings = import ./settings.nix;
+    inherit (settings) system;
 
-    mkHost = hostname: username: modules:
+    mkHost = hostname: let
+      host = settings.hosts.${hostname};
+      username = settings.user.name;
+    in
       nixpkgs.lib.nixosSystem {
         specialArgs = {
-          inherit inputs username hostname system lanzaboote;
+          inherit inputs settings host username hostname system lanzaboote;
         };
-        modules =
-          [
-            ./hosts/${hostname}
+        modules = [
+          ./hosts/${hostname}
+          ./modules
 
-            {
-              nixpkgs.config.permittedInsecurePackages = [
-                "electron-39.8.10"
-              ];
-            }
-
-            # Home Manager
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                users."${username}" = {
-                  imports = [
-                    ./home
-                  ];
-                };
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              extraSpecialArgs = {
+                inherit inputs settings host username hostname system;
               };
-            }
-
-            # lanzaboote.nixosModules.lanzaboote
-          ]
-          ++ modules;
+              users.${username}.imports = [./home];
+            };
+          }
+        ];
       };
   in {
     formatter.${system} = nixpkgs.legacyPackages.${system}.alejandra;
 
     # Define your hosts here
     nixosConfigurations = {
-      JNix = mkHost "JNix" "joshua" [];
-
-      laptop = mkHost "laptop" "joshua" [];
-      desktop = mkHost "desktop" "joshua" [];
+      laptop = mkHost "laptop";
+      desktop = mkHost "desktop";
     };
   };
 }

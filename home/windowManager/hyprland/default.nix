@@ -1,18 +1,31 @@
-{
-  config,
-  pkgs,
-  ...
-}: let
-  theme = "Balcony";
-in {
-  home.packages = with pkgs; [
-    hyprlock
-    hypridle
-    fuzzel
-    swww
+{pkgs, ...}: {
+  imports = [
+    ./hyprland.nix
+    ./launcher.nix
+    ./lock.nix
+    ./notifications.nix
+    ./waybar.nix
   ];
 
-  imports = [
-    ./${theme}
+  home.packages = with pkgs; [
+    brightnessctl
+    cliphist
+    grim
+    hyprpicker
+    pamixer
+    pavucontrol
+    playerctl
+    rofi
+    slurp
+    swappy
+    wf-recorder
+    wl-clipboard
+    wlogout
+    wireplumber
   ];
+
+  home.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+    ELECTRON_OZONE_PLATFORM_HINT = "auto";
+  };
 }

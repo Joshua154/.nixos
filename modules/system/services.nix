@@ -16,8 +16,6 @@
     blueman.enable = true;
     udev.packages = [pkgs.via];
     flatpak.enable = true;
-    # displaylink.enable = true;
-
     libinput = {
       enable = true;
 

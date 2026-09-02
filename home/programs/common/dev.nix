@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{pkgs, config, ...}: {
   home.packages = with pkgs; [
     nodejs_22
     burpsuite
@@ -9,7 +9,7 @@
     python313
     jdk25
     # gradle
-    texlive.combined.scheme-full
+    texliveFull
     vscode
 
     # JetBrains
@@ -26,6 +26,14 @@
     jetbrains-toolbox
 
     devenv
-    secretspec
   ];
+
+  # sharedModules = [
+  #   inputs.sops-nix.homeManagerModules.sops
+  # ];
+
+  # sops = {
+  #   defaultSopsFile = ./secrets.yaml;
+  #   age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
+  # };
 }

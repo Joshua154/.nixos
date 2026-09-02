@@ -1,23 +1,30 @@
 # Shared configuration modules that are common across all hosts
-{ config, pkgs, lib, ... }:
-
 {
+  pkgs,
+  lib,
+  settings,
+  ...
+}: {
   imports = [
     ./android.nix
     ./boot.nix
     ./cloudflared.nix
     ./fonts.nix
+    ./graphics.nix
     ./hardware.nix
     ./localsend.nix
     ./network.nix
     ./nix.nix
     ./packages.nix
     ./programs.nix
+    # ./secrets.nix
     ./services.nix
     ./tailscale.nix
     ./users.nix
     ./virtualisation.nix
   ];
+
+  system.stateVersion = settings.stateVersion;
 
   # Graphics configuration - default without specific GPU
   services.xserver.enable = lib.mkDefault true;
@@ -26,7 +33,7 @@
   xdg = {
     portal = {
       enable = true;
-      extraPortals = lib.mkDefault [ pkgs.xdg-desktop-portal-gtk ];
+      extraPortals = lib.mkDefault [pkgs.xdg-desktop-portal-gtk];
       config.common.default = lib.mkDefault "*";
     };
     mime.defaultApplications = {

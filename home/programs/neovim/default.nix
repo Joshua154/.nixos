@@ -16,7 +16,7 @@
 
     withRuby = false;
     withPython3 = false;
-    
+
     plugins = with pkgs.vimPlugins; [
       lazy-nvim
     ];
@@ -40,7 +40,7 @@
       nil
       alejandra
     ]
-    ++ lib.optionals pkgs.stdenv.isLinux [
+    ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
       wl-clipboard
       xclip
     ];

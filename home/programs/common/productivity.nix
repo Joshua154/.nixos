@@ -2,6 +2,7 @@
   home.packages = with pkgs; [
     beeper
     bitwarden-desktop
+    bws
     bluemail
     obsidian
     pdfarranger

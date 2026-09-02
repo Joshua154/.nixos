@@ -1,27 +1,29 @@
 {
   config,
-  pkgs,
+  host,
+  lib,
   username,
   ...
-}: {
+}: let
+  cfg = host.syncthing or {};
+  homeDirectory = config.users.users.${username}.home;
+  absolute = path:
+    if lib.hasPrefix "/" path
+    then path
+    else "${homeDirectory}/${path}";
+  folders = lib.mapAttrs (_: folder: folder // {path = absolute folder.path;}) (cfg.folders or {});
+in {
   services.syncthing = {
     enable = true;
     user = username;
-    dataDir = "/home/${username}/synctrain";
-    configDir = "/home/${username}/.config/syncthing";
+    dataDir = absolute (cfg.dataDirectory or "Sync");
+    configDir = "${homeDirectory}/.config/syncthing";
 
     openDefaultPorts = true;
 
     settings = {
-      folders = {
-        "Studium" = {
-          path = "/home/${username}/Documents/Studium";
-          devices = ["ipad"];
-        };
-      };
-      devices = {
-        "ipad" = {id = "4KIL5M2-K43IMIU-5GVF5W5-CJRRL2A-WKKKRVI-57J4LX7-PQJYCW6-UFDMAQZ";};
-      };
+      inherit folders;
+      devices = cfg.devices or {};
     };
   };
 }

@@ -1,13 +1,7 @@
-{
+{host, ...}: {
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [
-      22
-      80
-      443
-      3000
-      8080 # for web services
-      3160
-    ];
+    allowedTCPPorts = host.firewall.allowedTCPPorts or [];
+    allowedUDPPorts = host.firewall.allowedUDPPorts or [];
   };
 }

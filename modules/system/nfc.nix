@@ -1,4 +1,4 @@
-{hostname, ...}: {
+{
   services.neard.enable = true;
 
   services.neard.settings.General = {

@@ -2,7 +2,6 @@
   environment.systemPackages = with pkgs; [
     openconnect
     networkmanagerapplet
-    networkmanager
     networkmanager-openconnect
   ];
 

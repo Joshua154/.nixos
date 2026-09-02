@@ -29,11 +29,9 @@
 
     shellAliases = {
       ls = "lsd";
-      #vim = "nvim";
       c = "clear";
-      uniupdate = "git add .; git commit -m update; git push";
       clip = "xclip -selection clipboard";
-      rebuild = "sudo nixos-rebuild switch --flake ~/.nixos#${hostname} --impure";
+      rebuild = "sudo nixos-rebuild switch --flake \"path:$HOME/.nixos#${hostname}\"";
     };
 
     plugins = [
@@ -62,8 +60,6 @@
       if [[ -n "$GHOSTTY_RESOURCES_DIR" ]]; then
         builtin source "$GHOSTTY_RESOURCES_DIR/shell-integration/zsh/ghostty-integration"
       fi
-
-
       bindkey '^[[1;5D' backward-word
       bindkey '^[[1;5C' forward-word
     '';

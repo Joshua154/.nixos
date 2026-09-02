@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  inputs,
   ...
 }: {
   environment.systemPackages = with pkgs; [
@@ -19,23 +18,13 @@
 
     ethtool
 
-    # hyprland
-    #    hyprland
-    #    wayland-utils
-    #    xwayland
-    #    kitty
-
     gimp
-    # krita
     samba
 
-    btop-cuda
+    btop
 
     freerdp
-    # inputs.winboat.packages.${system}.winboat
     usbutils
-
-    cloudflared
   ];
 
   environment.etc."current_system_packages".text = let

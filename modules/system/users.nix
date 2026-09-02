@@ -21,11 +21,10 @@ in {
         "libvirtd"
         "networkmanager"
         "video"
+        "vboxusers"
         "wheel"
         "input"
       ];
     };
-
-    extraGroups.vboxusers.members = ["user-with-access-to-virtualbox"];
   };
 }

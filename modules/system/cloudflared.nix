@@ -1,7 +1,13 @@
-{pkgs, ...}: {
+{
+  host,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = host.cloudflared or {};
+in {
   environment.systemPackages = with pkgs; [
     cloudflared
-    # cloudflare-warp
   ];
 
   users.users.cloudflared = {
@@ -10,14 +16,14 @@
   };
   users.groups.cloudflared = {};
 
-  systemd.services.cloudflared-tunnel = {
+  systemd.services.cloudflared-tunnel = lib.mkIf (cfg.enableTunnel or false) {
     description = "Cloudflare Zero Trust Tunnel Connector";
     after = ["network-online.target"];
     wants = ["network-online.target"];
     wantedBy = ["multi-user.target"];
 
     serviceConfig = {
-      EnvironmentFile = "/var/lib/cloudflare-token";
+      EnvironmentFile = cfg.credentialsFile or "/var/lib/cloudflare-token";
       ExecStart = "${pkgs.cloudflared}/bin/cloudflared tunnel --no-autoupdate run --token \${CLOUDFLARE_TUNNEL_TOKEN}";
 
       Restart = "always";
@@ -34,6 +40,4 @@
       CapabilityBoundingSet = "";
     };
   };
-
-  # services.cloudflare-warp.enable = true;
 }

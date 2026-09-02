@@ -6,20 +6,16 @@
   ...
 }: {
   imports = [
-    ./android.nix
     ./boot.nix
-    ./cloudflared.nix
     ./fonts.nix
     ./graphics.nix
     ./hardware.nix
-    ./localsend.nix
     ./network.nix
     ./nix.nix
     ./packages.nix
     ./programs.nix
     # ./secrets.nix
     ./services.nix
-    ./tailscale.nix
     ./users.nix
     ./virtualisation.nix
   ];

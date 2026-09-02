@@ -38,7 +38,6 @@
   nixpkgs = {
     config = {
       allowUnfree = true;
-      allowUnsupportedSystem = true;
       permittedInsecurePackages = settings.permittedInsecurePackages;
     };
   };

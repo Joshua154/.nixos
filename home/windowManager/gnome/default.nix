@@ -13,17 +13,11 @@
 
   home.packages = with pkgs.gnomeExtensions; [
     blur-my-shell
-    # burn-my-windows
     caffeine
-    # copyous
-    # dash-to-panel
     gsconnect
-    # removable-drive-menu
     bluetooth-quick-connect
     coverflow-alt-tab
     panel-corners
-    # rounded-window-corners
-    # custom-hot-corners-extended
     gtile
     tailscale-status
     color-picker
@@ -60,12 +54,6 @@
     # Configure GSConnect
     "org/gnome/shell/extensions/gsconnect".show-indicators = true;
 
-    # Configure Copyous
-    "org/gnome/shell/extensions/copyous" = {
-      global-shortcut = ["<Super>comma"];
-      incognito-shortcut = ["<Shift><Super>less"];
-    };
-
     # Configure Bluetooth Quick Connect
     "org/gnome/shell/extensions/bluetooth-quick-connect" = {
       keep-menu-on-toggle = true;
@@ -81,41 +69,10 @@
       screen-corners = true;
     };
 
-    # Configure Rounded Window Corners
-    "org/gnome/shell/extensions/rounded-window-corners" = {
-      tweak-kitty-terminal = true;
-    };
-
-    # Configure Extended Hot Corners
-    "org/gnome/shell/extensions/custom-hot-corners-extended/monitor-0-top-left-0" = {
-      action = "toggle-overview";
-    };
-    "org/gnome/shell/extensions/custom-hot-corners-extended/monitor-0-top-left-1" = {
-      action = "move-win-to-prev-ws";
-    };
-    "org/gnome/shell/extensions/custom-hot-corners-extended/monitor-0-top-left-6" = {
-      action = "show-applications";
-      ctrl = true;
-    };
-    "org/gnome/shell/extensions/custom-hot-corners-extended/monitor-0-top-right-1" = {
-      action = "move-win-to-next-ws";
-      fullscreen = true;
-    };
-    "org/gnome/shell/extensions/custom-hot-corners-extended/monitor-0-top-right-6" = {
-      ctrl = true;
-    };
-
     # Configure Color Picker
     "org/gnome/shell/extensions/color-picker" = {
       enable-shortcut = true;
       color-picker-shortcut = ["<Shift><Super>c"];
-    };
-
-    # Configure Clipboard History
-    "org/gnome/shell/extensions/clipboard-history" = {
-      history-size = 100000;
-      private-mode = false;
-      display-mode = 0;
     };
 
     # The open applications bar

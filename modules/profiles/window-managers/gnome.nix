@@ -10,10 +10,9 @@
     gst_all_1.gst-plugins-ugly
     gst_all_1.gst-libav
   ];
-  # Exclude default GNOME applications
   environment.gnome.excludePackages = with pkgs; [
     gnome-tour
-    epiphany # web browser
-    geary # email client
+    epiphany
+    geary
   ];
 }

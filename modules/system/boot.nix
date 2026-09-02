@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{config, ...}: {
   boot = {
     extraModulePackages = [config.boot.kernelPackages.v4l2loopback];
     kernelModules = [

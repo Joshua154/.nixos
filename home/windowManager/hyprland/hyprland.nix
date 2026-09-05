@@ -238,6 +238,7 @@ in {
       ${execBind "SUPER + SHIFT + S" ''grim -g "$(slurp)" - | swappy -f -''}
       ${execBind "SUPER + SHIFT + R" ''wf-recorder -g "$(slurp)"''}
       ${execBind "SUPER + V" "cliphist list | rofi -dmenu | cliphist decode | wl-copy"}
+      ${execBind "SUPER + C" "qalculate-gtk"}
 
       ${dispatchBind "SUPER + left" ''hl.dsp.focus({ direction = "left" })''}
       ${dispatchBind "SUPER + down" ''hl.dsp.focus({ direction = "down" })''}
@@ -267,6 +268,7 @@ in {
       ${execBind "XF86AudioPlay" "playerctl play-pause"}
       ${execBind "XF86AudioNext" "playerctl next"}
       ${execBind "XF86AudioPrev" "playerctl previous"}
+      ${execBind "XF86Calculator" "qalculate-gtk"}
     '';
   };
 }

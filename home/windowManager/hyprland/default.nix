@@ -15,6 +15,7 @@
     pamixer
     pavucontrol
     playerctl
+    qalculate-gtk
     rofi
     slurp
     swappy

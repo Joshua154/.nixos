@@ -35,14 +35,14 @@
     ${pkgs.util-linux}/bin/flock --nonblock 9 || exit 0
 
     for attempt in {1..100}; do
-      if awww_outputs="$(${awww} query 2>/dev/null)"; then
+      if awww_outputs="$(${awww} query 2>/dev/null)" && [ -n "$awww_outputs" ]; then
         ${lib.concatMapStringsSep "\n" setWallpaperCommand host.hyprland.monitors}
         exit 0
       fi
       ${pkgs.coreutils}/bin/sleep 0.1
     done
 
-    echo "awww did not become ready within 10 seconds" >&2
+    echo "awww did not register any outputs within 10 seconds" >&2
     exit 1
   '';
   volumeControl = pkgs.writeShellScript "volume-control" ''

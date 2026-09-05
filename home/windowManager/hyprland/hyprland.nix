@@ -256,8 +256,11 @@ in {
       ${dispatchBind "SUPER + CTRL + SHIFT + right" ''hl.dsp.window.move({ workspace = "+1" })''}
       ${dispatchBind "SUPER + mouse_down" ''hl.dsp.focus({ workspace = "e+1" })''}
       ${dispatchBind "SUPER + mouse_up" ''hl.dsp.focus({ workspace = "e-1" })''}
+
       hl.bind("SUPER + mouse:272", hl.dsp.window.drag(), { mouse = true })
       hl.bind("SUPER + mouse:273", hl.dsp.window.resize(), { mouse = true })
+      hl.bind("SUPER + CTRL_L", hl.dsp.window.drag(), { mouse = true })
+      hl.bind("SUPER + ALT_L", hl.dsp.window.resize(), { mouse = true })
 
       ${repeatExecBind "XF86AudioRaiseVolume" "${volumeControl} up"}
       ${repeatExecBind "XF86AudioLowerVolume" "${volumeControl} down"}

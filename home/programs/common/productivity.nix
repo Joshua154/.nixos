@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
+    anki
     beeper
     bitwarden-desktop
     bws

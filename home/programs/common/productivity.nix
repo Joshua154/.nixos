@@ -4,6 +4,7 @@
     bitwarden-desktop
     bws
     bluemail
+    morgen
     obsidian
     pdfarranger
     # pureref

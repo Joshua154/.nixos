@@ -182,7 +182,8 @@ in {
         disable_hyprland_logo = true;
         disable_splash_rendering = true;
         mouse_move_enables_dpms = true;
-        vrr = true;
+        # Restrict VRR to fullscreen applications to prevent idle desktop flicker.
+        vrr = 2;
       };
       xwayland.force_zero_scaling = true;
       cursor.no_hardware_cursors = true;

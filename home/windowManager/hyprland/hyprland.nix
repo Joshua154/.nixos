@@ -190,6 +190,7 @@ in {
 
     extraConfig = ''
       -- Monitor data is host-specific and comes from settings.nix.
+      -- require("monitors")
       ${renderMonitors}
 
       hl.env("XCURSOR_SIZE", ${toLua (toString theme.cursor.size)})

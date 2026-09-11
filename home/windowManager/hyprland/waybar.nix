@@ -48,10 +48,17 @@ in {
             "network"
             "pulseaudio"
             "backlight"
+            "hyprland/language"
           ]
           ++ lib.optional host.hyprland.battery "battery";
       };
 
+      "hyprland/language" = {
+        format = "{short}";
+        tooltip = true;
+        tooltip-format = "Keyboard layout: {long}";
+        on-click = "hyprctl switchxkblayout current next";
+      };
       "custom/launcher" = {
         format = "  Apps";
         tooltip-format = "Open application launcher  Super + Space";
@@ -229,6 +236,7 @@ in {
       #network:hover,
       #pulseaudio:hover,
       #backlight:hover,
+      #language:hover,
       #battery:hover {
         background: alpha(#${c.overlay}, 0.95);
       }
@@ -297,6 +305,7 @@ in {
       #network,
       #pulseaudio,
       #backlight,
+      #language,
       #battery {
         min-width: 18px;
         padding: 0 8px;
@@ -350,6 +359,11 @@ in {
 
       #custom-power {
         color: #${c.red};
+      }
+
+      #language {
+        color: #${c.secondary};
+        font-weight: 700;
       }
 
       tooltip {

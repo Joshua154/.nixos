@@ -5,6 +5,7 @@
     ./lock.nix
     ./notifications.nix
     ./waybar.nix
+    ./wayvnc.nix
   ];
 
   home.packages = with pkgs; [

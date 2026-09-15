@@ -4,6 +4,16 @@
   ...
 }: {
   services = {
+    openssh = {
+      enable = true;
+      openFirewall = false;
+      settings = {
+        PermitRootLogin = "no";
+        PasswordAuthentication = true;
+        AllowUsers = [username];
+      };
+    };
+
     printing.enable = true;
 
     pipewire = {

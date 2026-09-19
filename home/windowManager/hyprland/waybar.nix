@@ -177,8 +177,16 @@ in {
         ];
       };
       "custom/notifications" = {
-        format = "󰂚";
-        tooltip-format = "Left: show previous notification\nRight: clear notifications";
+        format = "{}";
+        exec = ''
+          if [ "$(dunstctl is-paused 2>/dev/null)" = true ]; then
+            printf '󰂛'
+          else
+            printf '󰂚'
+          fi
+        '';
+        interval = 1;
+        tooltip-format = "Left: show previous notification\nMiddle: pause/resume notifications\nRight: clear notifications";
         on-click = "dunstctl history-pop";
         on-click-middle = "dunstctl set-paused toggle";
         on-click-right = "dunstctl close-all";

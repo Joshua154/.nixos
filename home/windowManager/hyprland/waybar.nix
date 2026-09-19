@@ -180,6 +180,7 @@ in {
         format = "󰂚";
         tooltip-format = "Left: show previous notification\nRight: clear notifications";
         on-click = "dunstctl history-pop";
+        on-click-middle = "dunstctl set-paused toggle";
         on-click-right = "dunstctl close-all";
       };
       "custom/power" = {

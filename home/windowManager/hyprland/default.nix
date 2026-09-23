@@ -13,6 +13,7 @@
     cliphist
     grim
     hyprpicker
+    nwg-displays
     pamixer
     pavucontrol
     playerctl
@@ -20,6 +21,7 @@
     rofi
     slurp
     swappy
+    waypaper
     wf-recorder
     wl-clipboard
     wlogout

@@ -1,5 +1,5 @@
 {
-  host,
+  config,
   lib,
   pkgs,
   theme,
@@ -8,36 +8,13 @@
 }: let
   c = theme.colors;
   toLua = lib.generators.toLua {};
-  monitorConfig = monitor: builtins.removeAttrs monitor ["wallpaper"];
-  renderMonitors =
-    lib.concatMapStringsSep "\n" (
-      monitor: "hl.monitor(${toLua (monitorConfig monitor)})"
-    )
-    host.hyprland.monitors;
   awww = lib.getExe pkgs.awww;
-  setWallpaperCommand = monitor: let
-    output = monitor.output or "";
-    outputOption = lib.optionalString (output != "") " --outputs ${lib.escapeShellArg output}";
-    image = lib.escapeShellArg (toString (wallpaper.forMonitor monitor));
-    command = "${awww} img${outputOption} --transition-type grow --transition-duration 1 ${image}";
-  in
-    if output == ""
-    then command
-    else ''
-      if printf '%s\n' "$awww_outputs" | ${pkgs.gnugrep}/bin/grep --fixed-strings --quiet -- ${lib.escapeShellArg ": ${output}:"}; then
-        ${command}
-      fi
-    '';
-  setWallpapers = pkgs.writeShellScript "set-wallpapers" ''
+  restoreWallpaper = pkgs.writeShellScript "restore-wallpaper" ''
     set -eu
-
-    exec 9>"''${XDG_RUNTIME_DIR}/nixos-wallpapers.lock"
-    ${pkgs.util-linux}/bin/flock --nonblock 9 || exit 0
 
     for attempt in {1..100}; do
       if awww_outputs="$(${awww} query 2>/dev/null)" && [ -n "$awww_outputs" ]; then
-        ${lib.concatMapStringsSep "\n" setWallpaperCommand host.hyprland.monitors}
-        exit 0
+        exec ${lib.getExe pkgs.waypaper} --restore --backend awww
       fi
       ${pkgs.coreutils}/bin/sleep 0.1
     done
@@ -113,8 +90,24 @@ in {
   wayland.systemd.target = "hyprland-session.target";
   services.awww = {
     enable = true;
-    extraArgs = ["--no-cache"];
   };
+
+  # Seed a writable config once; Waypaper owns subsequent GUI changes.
+  home.activation.waypaperConfig = lib.hm.dag.entryAfter ["linkGeneration"] ''
+    if [ ! -e ${lib.escapeShellArg "${config.xdg.configHome}/waypaper/config.ini"} ]; then
+      run mkdir -p ${lib.escapeShellArg "${config.xdg.configHome}/waypaper"}
+      run cp ${pkgs.writeText "waypaper-default.ini" ''
+      [Settings]
+      folder = ${config.home.homeDirectory}/Pictures/wallpaper
+      wallpaper = ${wallpaper.default}
+      backend = awww
+      monitors = All
+      subfolders = True
+      all_subfolders = True
+    ''} ${lib.escapeShellArg "${config.xdg.configHome}/waypaper/config.ini"}
+      run chmod u+w ${lib.escapeShellArg "${config.xdg.configHome}/waypaper/config.ini"}
+    fi
+  '';
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -189,9 +182,15 @@ in {
     };
 
     extraConfig = ''
-      -- Monitor data is host-specific and comes from settings.nix.
-      require("monitors")
-      -- $ {renderMonitors}
+      -- nwg-displays owns these local files. A fresh install uses auto detection.
+      local config_dir = os.getenv("XDG_CONFIG_HOME") or (os.getenv("HOME") .. "/.config")
+      for _, name in ipairs({ "monitors", "workspaces" }) do
+        local file = io.open(config_dir .. "/hypr/" .. name .. ".lua", "r")
+        if file then
+          file:close()
+          require(name)
+        end
+      end
 
       hl.env("XCURSOR_SIZE", ${toLua (toString theme.cursor.size)})
       hl.env("HYPRCURSOR_SIZE", ${toLua (toString theme.cursor.size)})
@@ -204,20 +203,10 @@ in {
       hl.animation({ leaf = "workspaces", enabled = true, speed = 5, bezier = "workspace", style = "slide" })
 
       hl.on("hyprland.start", function()
-        hl.exec_cmd(${toLua (toString setWallpapers)})
+        hl.exec_cmd(${toLua (toString restoreWallpaper)})
         hl.exec_cmd("wl-paste --type text --watch cliphist store")
         hl.exec_cmd("wl-paste --type image --watch cliphist store")
         hl.exec_cmd("blueman-applet")
-      end)
-
-      -- Re-apply the configured mapping when an output is hot-plugged.
-      hl.on("monitor.added", function()
-        hl.exec_cmd(${toLua (toString setWallpapers)})
-      end)
-
-      -- Make a changed wallpaper ID effective after `hyprctl reload`.
-      hl.on("config.reloaded", function()
-        hl.exec_cmd(${toLua (toString setWallpapers)})
       end)
 
       ${execBind "SUPER + Return" "ghostty"}

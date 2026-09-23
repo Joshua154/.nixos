@@ -47,17 +47,6 @@
 
       nixLd = true;
       hyprland = {
-        # wallpaper accepts a one-based theme catalog ID or a path string.
-        # Example: wallpaper = "home/images/wallpaper/main_menu_background.png";
-        monitors = [
-          {
-            output = "eDP-1";
-            # mode = "1920x1080@60";
-            position = "0x0";
-            scale = 1;
-            wallpaper = 4;
-          }
-        ];
         battery = true;
       };
     };
@@ -84,29 +73,6 @@
 
       nixLd = false;
       hyprland = {
-        monitors = [
-          # Fallback for docks and newly attached outputs.
-          {
-            output = "";
-            mode = "highrr";
-            position = "auto";
-            scale = 1;
-          }
-          {
-            output = "DP-2";
-            mode = "2560x1440@180";
-            position = "0x0";
-            scale = 1;
-            wallpaper = 21;
-          }
-          {
-            output = "DP-3";
-            mode = "2560x1440@180";
-            position = "2560x0";
-            scale = 1;
-            wallpaper = 7;
-          }
-        ];
         battery = false;
       };
     };

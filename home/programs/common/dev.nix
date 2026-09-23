@@ -13,15 +13,15 @@
     vscode
 
     # JetBrains
-    jetbrains.gateway
+    # jetbrains.gateway
     # jetbrains.idea
-    jetbrains.pycharm
+    # jetbrains.pycharm
     # jetbrains.ruby-mine
     # jetbrains.webstorm
-    jetbrains.clion
-    jetbrains.datagrip
+    # jetbrains.clion
+    # jetbrains.datagrip
     # jetbrains.goland
-    jetbrains.rust-rover
+    # jetbrains.rust-rover
 
     jetbrains-toolbox
 

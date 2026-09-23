@@ -4,7 +4,9 @@
   pkgs,
   inputs,
   ...
-}: {
+}: let
+  pandora-launcher = import ./overwrites/pandora-launcher.nix {inherit lib pkgs;};
+in {
   environment.systemPackages = with pkgs; [
     vim
     curl
@@ -19,14 +21,8 @@
 
     ethtool
 
-    # hyprland
-    #    hyprland
-    #    wayland-utils
-    #    xwayland
-    #    kitty
-
     gimp
-    # krita
+    krita
     samba
 
     btop-cuda

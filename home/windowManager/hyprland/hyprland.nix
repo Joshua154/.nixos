@@ -1,11 +1,13 @@
 {
   config,
+  host,
   lib,
   pkgs,
   theme,
   wallpaper,
   ...
 }: let
+  selectedOpenWallpaper = host.openwallpaper.selected;
   c = theme.colors;
   toLua = lib.generators.toLua {};
   awww = lib.getExe pkgs.awww;
@@ -89,7 +91,7 @@ in {
   # Bind the daemon to the Hyprland session so GNOME sessions do not start it.
   wayland.systemd.target = "hyprland-session.target";
   services.awww = {
-    enable = true;
+    enable = selectedOpenWallpaper == null;
   };
 
   # Seed a writable config once; Waypaper owns subsequent GUI changes.
@@ -203,7 +205,7 @@ in {
       hl.animation({ leaf = "workspaces", enabled = true, speed = 5, bezier = "workspace", style = "slide" })
 
       hl.on("hyprland.start", function()
-        hl.exec_cmd(${toLua (toString restoreWallpaper)})
+        ${lib.optionalString (selectedOpenWallpaper == null) "hl.exec_cmd(${toLua (toString restoreWallpaper)})"}
         hl.exec_cmd("wl-paste --type text --watch cliphist store")
         hl.exec_cmd("wl-paste --type image --watch cliphist store")
         hl.exec_cmd("blueman-applet")

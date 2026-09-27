@@ -21,6 +21,8 @@
     "xpdf-4.05"
   ];
 
+  openwallpaper.enabled = ["solid" "pulse" "fullscreen-shader"];
+
   hosts = {
     laptop = {
       profiles = {
@@ -49,6 +51,7 @@
       hyprland = {
         battery = true;
       };
+      openwallpaper.selected = null;
     };
 
     desktop = {
@@ -75,6 +78,7 @@
       hyprland = {
         battery = false;
       };
+      openwallpaper.selected = "fullscreen-shader";
     };
   };
 }

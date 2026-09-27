@@ -4,6 +4,7 @@
     ./launcher.nix
     ./lock.nix
     ./notifications.nix
+    ./openwallpaper.nix
     ./waybar.nix
     ./wayvnc.nix
   ];

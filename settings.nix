@@ -56,7 +56,8 @@
 
     desktop = {
       profiles = {
-        boot = "secure-boot";
+        # boot = "secure-boot";
+        boot = "systemd-boot";
         hardware = [
           "intel"
           "nvidia"

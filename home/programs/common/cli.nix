@@ -5,6 +5,8 @@
     unzip
     gnumake42
     fzf
+    ripgrep
+    jq
 
     unzip
     atool
@@ -12,6 +14,7 @@
   ];
 
   programs = {
+    atuin.enable = true;
     feh.enable = true;
     zoxide.enable = true;
   };

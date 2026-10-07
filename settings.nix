@@ -79,7 +79,8 @@
       hyprland = {
         battery = false;
       };
-      openwallpaper.selected = "fullscreen-shader";
+      # openwallpaper.selected = "fullscreen-shader";
+      openwallpaper.selected = null;
     };
   };
 }

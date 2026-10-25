@@ -21,6 +21,7 @@
     qalculate-gtk
     rofi
     slurp
+    satty
     swappy
     waypaper
     wf-recorder

@@ -228,6 +228,7 @@ in {
       ${execBind "SUPER + SHIFT + E" "wlogout -b 3 -L 300 -R 300 -T 220 -B 220"}
       ${execBind "SUPER + SHIFT + C" "hyprpicker -a"}
       ${execBind "SUPER + SHIFT + S" ''grim -g "$(slurp)" - | swappy -f -''}
+      ${execBind "SUPER + SHIFT + CTRL + S" ''grim - | satty -f - --copy-command wl-copy -o "~/Pictures/Screenshots/%Y%m%d_%H%M%S.png"''}
       ${execBind "SUPER + SHIFT + R" ''wf-recorder -g "$(slurp)"''}
       ${execBind "SUPER + V" "cliphist list | rofi -dmenu | cliphist decode | wl-copy"}
       ${execBind "SUPER + C" "qalculate-gtk"}

@@ -11,8 +11,8 @@ in {
         modi: "drun,run,window";
         show-icons: true;
         sidebar-mode: true;
-        matching: "fuzzy";
-        sorting-method: "fzf";
+        matching: "normal";
+        sorting-method: "normal";
         hover-select: true;
         drun-display-format: "{name}";
         display-drun: "Applications";

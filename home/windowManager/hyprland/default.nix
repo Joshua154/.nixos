@@ -5,7 +5,8 @@
     ./lock.nix
     ./notifications.nix
     ./openwallpaper.nix
-    ./waybar.nix
+    # ./waybar.nix
+    ./caelestia.nix
     ./wayvnc.nix
   ];
 

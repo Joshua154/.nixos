@@ -1,4 +1,4 @@
-{pkgs, config, ...}: {
+{pkgs, ...}: {
   home.packages = with pkgs; [
     nodejs_22
     burpsuite
@@ -8,32 +8,11 @@
     # Development Environments
     python313
     jdk25
-    # gradle
     texliveFull
     vscode
-
-    # JetBrains
-    # jetbrains.gateway
-    # jetbrains.idea
-    # jetbrains.pycharm
-    # jetbrains.ruby-mine
-    # jetbrains.webstorm
-    # jetbrains.clion
-    # jetbrains.datagrip
-    # jetbrains.goland
-    # jetbrains.rust-rover
 
     jetbrains-toolbox
 
     devenv
   ];
-
-  # sharedModules = [
-  #   inputs.sops-nix.homeManagerModules.sops
-  # ];
-
-  # sops = {
-  #   defaultSopsFile = ./secrets.yaml;
-  #   age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
-  # };
 }

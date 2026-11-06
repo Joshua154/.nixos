@@ -1,9 +1,10 @@
 {
-  config,
   pkgs,
   lib,
   ...
 }: {
+  services.thermald.enable = lib.mkDefault true;
+
   # OpenGL
   hardware.graphics = {
     enable = true;

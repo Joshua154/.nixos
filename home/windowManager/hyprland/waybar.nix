@@ -1,4 +1,5 @@
 {
+  config,
   host,
   lib,
   theme,
@@ -6,6 +7,9 @@
 }: let
   c = theme.colors;
 in {
+  # tray.target is also used by GNOME; only the Hyprland session starts Waybar.
+  systemd.user.services.waybar.Install.WantedBy = lib.mkForce [config.wayland.systemd.target];
+
   programs.waybar = {
     enable = true;
     systemd.enable = true;

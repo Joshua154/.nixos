@@ -88,8 +88,9 @@
     hl.bind("SUPER + SHIFT + ${key}", hl.dsp.window.move({ workspace = "${workspace}", follow = false }))
   '') (lib.range 1 10);
 in {
-  # Bind the daemon to the Hyprland session so GNOME sessions do not start it.
-  wayland.systemd.target = "hyprland-session.target";
+  # The instance matches `uwsm start ... hyprland.desktop` in the login entry.
+  wayland.systemd.target = "wayland-session@hyprland.desktop.target";
+  services.cliphist.enable = true;
   services.awww = {
     enable = selectedOpenWallpaper == null;
   };
@@ -116,10 +117,8 @@ in {
     configType = "lua";
     package = null;
     portalPackage = null;
-    systemd = {
-      enable = true;
-      enableXdgAutostart = true;
-    };
+    # UWSM owns session startup, environment import and XDG autostart.
+    systemd.enable = false;
 
     settings.config = {
       input = {
@@ -206,9 +205,6 @@ in {
 
       hl.on("hyprland.start", function()
         ${lib.optionalString (selectedOpenWallpaper == null) "hl.exec_cmd(${toLua (toString restoreWallpaper)})"}
-        hl.exec_cmd("wl-paste --type text --watch cliphist store")
-        hl.exec_cmd("wl-paste --type image --watch cliphist store")
-        hl.exec_cmd("blueman-applet")
       end)
 
       ${execBind "SUPER + Return" "ghostty"}
@@ -217,9 +213,9 @@ in {
       ${execBind "SUPER + TAB" "rofi -show window"}
       ${execBind "SUPER + B" "zen"}
       ${execBind "SUPER + E" "nautilus"}
-      ${execBind "SUPER + M" "alacritty"}
+      ${execBind "SUPER + M" "ghostty"}
       ${dispatchBind "SUPER + Q" "hl.dsp.window.close()"}
-      ${dispatchBind "SUPER + SHIFT + Q" "hl.dsp.exit()"}
+      ${execBind "SUPER + SHIFT + Q" "uwsm stop"}
       ${dispatchBind "SUPER + F" ''hl.dsp.window.fullscreen({ mode = "maximized" })''}
       ${dispatchBind "SUPER + SHIFT + F" ''hl.dsp.window.fullscreen({ mode = "fullscreen" })''}
       ${dispatchBind "SUPER + T" ''hl.dsp.window.float({ action = "toggle" })''}
@@ -228,7 +224,7 @@ in {
       ${execBind "SUPER + SHIFT + E" "wlogout -b 3 -L 300 -R 300 -T 220 -B 220"}
       ${execBind "SUPER + SHIFT + C" "hyprpicker -a"}
       ${execBind "SUPER + SHIFT + S" ''grim -g "$(slurp)" - | swappy -f -''}
-      ${execBind "SUPER + SHIFT + CTRL + S" ''grim - | satty -f - --copy-command wl-copy -o "~/Pictures/Screenshots/%Y%m%d_%H%M%S.png"''}
+      ${execBind "SUPER + SHIFT + CTRL + S" ''mkdir -p "$HOME/Pictures/Screenshots" && grim - | satty -f - --copy-command wl-copy -o "$HOME/Pictures/Screenshots/%Y%m%d_%H%M%S.png"''}
       ${execBind "SUPER + SHIFT + R" ''wf-recorder -g "$(slurp)"''}
       ${execBind "SUPER + V" "cliphist list | rofi -dmenu | cliphist decode | wl-copy"}
       ${execBind "SUPER + C" "qalculate-gtk"}

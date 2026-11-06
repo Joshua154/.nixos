@@ -1,7 +1,6 @@
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     cloudflared
-    # cloudflare-warp
   ];
 
   users.users.cloudflared = {
@@ -15,6 +14,7 @@
     after = ["network-online.target"];
     wants = ["network-online.target"];
     wantedBy = ["multi-user.target"];
+    unitConfig.ConditionPathExists = "/var/lib/cloudflare-token";
 
     serviceConfig = {
       EnvironmentFile = "/var/lib/cloudflare-token";
@@ -34,6 +34,4 @@
       CapabilityBoundingSet = "";
     };
   };
-
-  # services.cloudflare-warp.enable = true;
 }

@@ -17,7 +17,6 @@
     ./nix.nix
     ./packages.nix
     ./programs.nix
-    # ./secrets.nix
     ./services.nix
     ./tailscale.nix
     ./users.nix
@@ -25,9 +24,6 @@
   ];
 
   system.stateVersion = settings.stateVersion;
-
-  # Graphics configuration - default without specific GPU
-  services.xserver.enable = lib.mkDefault true;
 
   # XDG Portal configuration
   xdg = {

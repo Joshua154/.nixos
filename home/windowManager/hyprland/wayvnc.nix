@@ -33,8 +33,8 @@ in {
   systemd.user.services.wayvnc = {
     Unit = {
       Description = "VNC access to the Hyprland session";
-      After = ["hyprland-session.target"];
-      PartOf = ["hyprland-session.target"];
+      After = [config.wayland.systemd.target];
+      PartOf = [config.wayland.systemd.target];
     };
     Service = {
       ExecStartPre = toString prepare;
@@ -43,6 +43,6 @@ in {
       RestartSec = 3;
       UMask = "0077";
     };
-    Install.WantedBy = ["hyprland-session.target"];
+    Install.WantedBy = [config.wayland.systemd.target];
   };
 }

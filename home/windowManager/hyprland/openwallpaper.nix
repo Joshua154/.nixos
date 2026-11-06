@@ -180,13 +180,14 @@ in {
   systemd.user.services.openwallpaper = lib.mkIf (selectedScene != null) {
     Unit = {
       Description = "Selected OpenWallpaper scene";
-      PartOf = ["hyprland-session.target"];
+      After = [config.wayland.systemd.target];
+      PartOf = [config.wayland.systemd.target];
     };
     Service = {
       WorkingDirectory = "${dataDirectory}/${selectedScene}";
       ExecStart = "${openwallpaper}/bin/wallpaperd --pause-hidden ${lib.optionalString host.hyprland.battery "--pause-on-bat"} ${dataDirectory}/${selectedScene}/scene.wasm";
       Restart = "on-failure";
     };
-    Install.WantedBy = ["hyprland-session.target"];
+    Install.WantedBy = [config.wayland.systemd.target];
   };
 }

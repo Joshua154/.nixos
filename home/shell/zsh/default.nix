@@ -29,11 +29,10 @@
 
     shellAliases = {
       ls = "lsd";
-      #vim = "nvim";
       c = "clear";
       uniupdate = "git add .; git commit -m update; git push";
       clip = "xclip -selection clipboard";
-      rebuild = "sudo nixos-rebuild switch --flake ~/.nixos#${hostname} --impure";
+      rebuild = "sudo nixos-rebuild switch --flake ~/.nixos#${hostname}";
     };
 
     plugins = [
@@ -51,18 +50,10 @@
       zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
       zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
-      eval "$(zoxide init --cmd cd zsh)"
-
       # Inject nix-shell and nix develop with Zsh
       eval "$(nix-your-shell zsh)"
 
       [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
-
-      # Optional Ghostty support
-      if [[ -n "$GHOSTTY_RESOURCES_DIR" ]]; then
-        builtin source "$GHOSTTY_RESOURCES_DIR/shell-integration/zsh/ghostty-integration"
-      fi
-
 
       bindkey '^[[1;5D' backward-word
       bindkey '^[[1;5C' forward-word

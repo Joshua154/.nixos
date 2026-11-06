@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  inputs,
   ...
 }: let
   pandora-launcher = import ./overwrites/pandora-launcher.nix {inherit lib pkgs;};
@@ -28,10 +27,7 @@ in {
     btop-cuda
 
     freerdp
-    # inputs.winboat.packages.${system}.winboat
     usbutils
-
-    cloudflared
   ];
 
   environment.etc."current_system_packages".text = let

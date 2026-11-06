@@ -17,14 +17,13 @@
 
   # Essential Hyprland tools
   programs.hyprlock.enable = true;
-  services.hypridle.enable = true;
+  # Hyprlock enables the global idle service; Home Manager scopes it to Hyprland.
+  services.hypridle.enable = lib.mkForce false;
 
   environment.systemPackages = with pkgs; [
     pyprland
     hyprpicker
     hyprcursor
-    hyprlock
-    hypridle
     hyprpaper
     hyprsunset
     hyprpolkitagent

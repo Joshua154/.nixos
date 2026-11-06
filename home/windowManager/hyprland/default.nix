@@ -11,9 +11,7 @@
 
   home.packages = with pkgs; [
     brightnessctl
-    cliphist
     grim
-    hyprpicker
     nwg-displays
     pamixer
     pavucontrol

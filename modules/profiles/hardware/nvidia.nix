@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  lib,
   ...
 }: {
   # OpenGL
@@ -36,7 +35,6 @@
 
     # Use the NVidia open source kernel module
     # Support is limited to Turing and later architectures
-    # Currently alpha-quality/buggy, so false is recommended
     open = false;
 
     # Enable the Nvidia settings menu
@@ -48,12 +46,4 @@
     # Prevent NVIDIA from being suspended
     nvidiaPersistenced = false;
   };
-
-  # Fix Wayland cursor issues with NVIDIA
-  environment.sessionVariables = {
-    WLR_NO_HARDWARE_CURSORS = "1";
-  };
-
-  # Enable thermald for better thermal management
-  services.thermald.enable = lib.mkDefault true;
 }

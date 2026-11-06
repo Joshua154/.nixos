@@ -24,7 +24,6 @@
     self,
     nixpkgs,
     home-manager,
-    zen-browser,
     lanzaboote,
     ...
   } @ inputs: let
@@ -59,10 +58,8 @@
   in {
     formatter.${system} = nixpkgs.legacyPackages.${system}.alejandra;
 
-    # Define your hosts here
-    nixosConfigurations = {
-      laptop = mkHost "laptop";
-      desktop = mkHost "desktop";
-    };
+    nixosConfigurations = nixpkgs.lib.genAttrs (builtins.attrNames settings.hosts) mkHost;
+
+    checks.${system} = builtins.mapAttrs (_: host: host.config.system.build.toplevel) self.nixosConfigurations;
   };
 }

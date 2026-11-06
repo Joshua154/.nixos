@@ -25,7 +25,5 @@ in {
         "input"
       ];
     };
-
-    extraGroups.vboxusers.members = ["user-with-access-to-virtualbox"];
   };
 }

@@ -3,7 +3,6 @@
     celluloid
     spotify
     ffmpeg
-    # pear-desktop (youtube-music)
     gthumb
   ];
 }

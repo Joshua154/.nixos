@@ -1,5 +1,6 @@
 {
   system = "x86_64-linux";
+  # Compatibility defaults for existing data; do not bump with package updates.
   stateVersion = "25.05";
   theme = "balcony";
 
@@ -14,12 +15,6 @@
     defaultLocale = "en_US.UTF-8";
     regionalLocale = "de_DE.UTF-8";
   };
-
-  permittedInsecurePackages = [
-    "electron-39.8.10"
-    "openssl-1.1.1w"
-    "xpdf-4.05"
-  ];
 
   openwallpaper.enabled = ["solid" "pulse" "fullscreen-shader"];
 
@@ -56,10 +51,8 @@
 
     desktop = {
       profiles = {
-        # boot = "secure-boot";
         boot = "systemd-boot";
         hardware = [
-          "intel"
           "nvidia"
         ];
         networking = [
@@ -79,7 +72,6 @@
       hyprland = {
         battery = false;
       };
-      # openwallpaper.selected = "fullscreen-shader";
       openwallpaper.selected = null;
     };
   };

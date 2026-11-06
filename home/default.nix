@@ -25,7 +25,6 @@ in {
     username = settings.user.name;
     homeDirectory = "/home/${settings.user.name}";
     stateVersion = settings.stateVersion;
-    enableNixpkgsReleaseCheck = false;
 
     sessionVariables = {
       XCURSOR_THEME = theme.cursor.name;

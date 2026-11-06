@@ -1,4 +1,6 @@
-{
+{username, ...}: {
+  users.users.${username}.extraGroups = ["vboxusers"];
+
   virtualisation = {
     docker = {
       enable = true;
@@ -11,7 +13,6 @@
     libvirtd = {
       enable = true;
       qemu = {
-        # ovmf.enable = true;
         swtpm.enable = true;
       };
     };

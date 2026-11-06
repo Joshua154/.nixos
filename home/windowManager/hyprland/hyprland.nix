@@ -24,6 +24,7 @@
     echo "awww did not register any outputs within 10 seconds" >&2
     exit 1
   '';
+  # Caelestia's OSD shows volume/brightness changes; no notification needed.
   volumeControl = pkgs.writeShellScript "volume-control" ''
     set -eu
 
@@ -33,30 +34,6 @@
       mute) ${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle ;;
       *) exit 2 ;;
     esac
-
-    status="$(${pkgs.wireplumber}/bin/wpctl get-volume @DEFAULT_AUDIO_SINK@)"
-    level="$(printf '%s\n' "$status" | ${pkgs.gawk}/bin/awk '{ printf "%.0f", $2 * 100 }')"
-
-    if printf '%s\n' "$status" | ${pkgs.gnugrep}/bin/grep --quiet MUTED; then
-      icon="󰝟"
-      label="Muted"
-    elif [ "$level" -lt 34 ]; then
-      icon=""
-      label="Volume"
-    elif [ "$level" -lt 67 ]; then
-      icon=""
-      label="Volume"
-    else
-      icon=""
-      label="Volume"
-    fi
-
-    ${pkgs.dunst}/bin/dunstify \
-      -a "Quick settings" \
-      -u low \
-      -h string:x-dunst-stack-tag:volume \
-      -h int:value:"$level" \
-      "$icon  $label" "$level%"
   '';
   brightnessControl = pkgs.writeShellScript "brightness-control" ''
     set -eu
@@ -66,14 +43,6 @@
       down) ${pkgs.brightnessctl}/bin/brightnessctl set 5%- ;;
       *) exit 2 ;;
     esac
-
-    level="$(${pkgs.brightnessctl}/bin/brightnessctl -m | ${pkgs.gawk}/bin/awk -F, '{ gsub(/%/, "", $4); print $4 }')"
-    ${pkgs.dunst}/bin/dunstify \
-      -a "Quick settings" \
-      -u low \
-      -h string:x-dunst-stack-tag:brightness \
-      -h int:value:"$level" \
-      "󰃠  Brightness" "$level%"
   '';
   execBind = keys: command: "hl.bind(${toLua keys}, hl.dsp.exec_cmd(${toLua command}))";
   dispatchBind = keys: dispatcher: "hl.bind(${toLua keys}, ${dispatcher})";
@@ -208,9 +177,9 @@ in {
       end)
 
       ${execBind "SUPER + Return" "ghostty"}
-      ${execBind "SUPER + D" "rofi -show drun"}
-      ${execBind "SUPER + SPACE" "rofi -show drun"}
-      ${execBind "SUPER + TAB" "rofi -show window"}
+      ${execBind "SUPER + D" "caelestia shell drawers toggle launcher"}
+      ${execBind "SUPER + SPACE" "caelestia shell drawers toggle launcher"}
+      ${execBind "SUPER + TAB" "caelestia shell drawers toggle dashboard"}
       ${execBind "SUPER + B" "zen"}
       ${execBind "SUPER + E" "nautilus"}
       ${execBind "SUPER + M" "ghostty"}
@@ -223,10 +192,10 @@ in {
       ${execBind "SUPER + L" "hyprlock"}
       ${execBind "SUPER + SHIFT + E" "wlogout -b 3 -L 300 -R 300 -T 220 -B 220"}
       ${execBind "SUPER + SHIFT + C" "hyprpicker -a"}
-      ${execBind "SUPER + SHIFT + S" ''grim -g "$(slurp)" - | swappy -f -''}
-      ${execBind "SUPER + SHIFT + CTRL + S" ''mkdir -p "$HOME/Pictures/Screenshots" && grim - | satty -f - --copy-command wl-copy -o "$HOME/Pictures/Screenshots/%Y%m%d_%H%M%S.png"''}
-      ${execBind "SUPER + SHIFT + R" ''wf-recorder -g "$(slurp)"''}
-      ${execBind "SUPER + V" "cliphist list | rofi -dmenu | cliphist decode | wl-copy"}
+      ${execBind "SUPER + SHIFT + S" "caelestia screenshot -r -f"}
+      ${execBind "SUPER + SHIFT + CTRL + S" "caelestia screenshot"}
+      ${execBind "SUPER + SHIFT + R" "caelestia record -r"}
+      ${execBind "SUPER + V" "caelestia clipboard"}
       ${execBind "SUPER + C" "qalculate-gtk"}
 
       ${dispatchBind "SUPER + left" ''hl.dsp.focus({ direction = "left" })''}

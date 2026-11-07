@@ -8,6 +8,10 @@
   ...
 }: let
   selectedOpenWallpaper = host.openwallpaper.selected;
+  hyprlandSessionTargets = [
+    "hyprland-session.target"
+    "wayland-session@hyprland.desktop.target"
+  ];
   c = theme.colors;
   toLua = lib.generators.toLua {};
   awww = lib.getExe pkgs.awww;
@@ -57,8 +61,17 @@
     hl.bind("SUPER + SHIFT + ${key}", hl.dsp.window.move({ workspace = "${workspace}", follow = false }))
   '') (lib.range 1 10);
 in {
-  # The instance matches `uwsm start ... hyprland.desktop` in the login entry.
-  wayland.systemd.target = "wayland-session@hyprland.desktop.target";
+  # start-hyprland and UWSM activate different session targets. Share the
+  # background services between both login entries and stop them on logout.
+  wayland.systemd.target = "hyprland-desktop.target";
+  systemd.user.targets.hyprland-desktop = {
+    Unit = {
+      Description = "Hyprland desktop services";
+      After = hyprlandSessionTargets;
+      PartOf = hyprlandSessionTargets;
+    };
+    Install.WantedBy = hyprlandSessionTargets;
+  };
   services.cliphist.enable = true;
   services.awww = {
     enable = selectedOpenWallpaper == null;
@@ -86,7 +99,7 @@ in {
     configType = "lua";
     package = null;
     portalPackage = null;
-    # UWSM owns session startup, environment import and XDG autostart.
+    # start-hyprland or UWSM owns session startup and environment import.
     systemd.enable = false;
 
     settings.config = {

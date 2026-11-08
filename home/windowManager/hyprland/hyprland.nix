@@ -203,6 +203,7 @@ in {
       ${dispatchBind "SUPER + T" ''hl.dsp.window.float({ action = "toggle" })''}
       ${dispatchBind "SUPER + P" "hl.dsp.window.pseudo()"}
       ${execBind "SUPER + L" "hyprlock"}
+      ${execBind "SUPER + K" "hyprctl switchxkblayout current next"}
       ${execBind "SUPER + SHIFT + E" "wlogout -b 3 -L 300 -R 300 -T 220 -B 220"}
       ${execBind "SUPER + SHIFT + C" "hyprpicker -a"}
       ${execBind "SUPER + SHIFT + S" "caelestia screenshot -r -f"}

@@ -16,8 +16,9 @@
   };
 
   # Essential Hyprland tools
-  programs.hyprlock.enable = true;
-  # Hyprlock enables the global idle service; Home Manager scopes it to Hyprland.
+  # programs.hyprlock.enable = true;
+
+  # Home Manager scopes the idle service to the Hyprland session.
   services.hypridle.enable = lib.mkForce false;
 
   environment.systemPackages = with pkgs; [

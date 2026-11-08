@@ -27,6 +27,11 @@
     };
     settings = {
       paths.wallpaperDir = "~/Pictures/wallpaper";
+      # Hypridle owns these timeouts so the shell does not run a second set.
+      general.idle = {
+        lockBeforeSleep = false;
+        timeouts = [];
+      };
     };
     cli.enable = true;
   };

@@ -1,5 +1,6 @@
 {
   inputs,
+  pkgs,
   theme,
   ...
 }: {
@@ -7,6 +8,15 @@
 
   programs.caelestia = {
     enable = true;
+    # package = inputs.caelestia-shell.packages.${pkgs.stdenv.hostPlatform.system}.with-cli.overrideAttrs (old: {
+    #   postPatch =
+    #     (old.postPatch or "")
+    #     + ''
+    #       substituteInPlace modules/bar/components/Clock.qml \
+    #         --replace-fail 'import QtQuick.Layouts' $'import Quickshell\nimport QtQuick.Layouts' \
+    #         --replace-fail '    ColumnLayout {' $'    TapHandler {\n        onTapped: Quickshell.execDetached(["morgen"])\n    }\n\n    ColumnLayout {'
+    #     '';
+    # });
     # Starts with the Hyprland session (wayland.systemd.target).
     systemd = {
       enable = true;

@@ -68,7 +68,7 @@
         services = ["syncthing"];
       };
 
-      nixLd = false;
+      nixLd = true;
       hyprland = {
         battery = false;
       };

@@ -24,14 +24,17 @@
     modesetting.enable = true;
 
     powerManagement = {
-      # Nvidia power management. Experimental, can cause sleep/suspend issues.
-      # Enable if you have graphical corruption or crashes after waking from sleep.
-      enable = false;
+      # Preserve VRAM across sleep and install NVIDIA's suspend/resume hooks.
+      # Without this, Hyprland and other GPU clients can crash after resume.
+      enable = true;
 
       # Fine-grained power management. Turns off GPU when not in use.
       # Experimental and only works on modern Nvidia GPUs (Turing or newer).
       finegrained = false;
     };
+
+    # Back up VRAM on disk, with enough space even if /tmp becomes a tmpfs.
+    moduleParams.nvidia.NVreg_TemporaryFilePath = "/var/tmp";
 
     # Use the NVidia open source kernel module
     # Support is limited to Turing and later architectures
@@ -43,7 +46,7 @@
     # Select the appropriate driver version
     package = config.boot.kernelPackages.nvidiaPackages.stable;
 
-    # Prevent NVIDIA from being suspended
+    # GPU persistence is independent of suspend/resume memory preservation.
     nvidiaPersistenced = false;
   };
 }

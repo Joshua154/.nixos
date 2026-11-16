@@ -24,7 +24,7 @@
         boot = "systemd-boot";
         hardware = [
           "intel"
-          "displaylink"
+          # "displaylink"
         ];
         networking = [
           "networkmanager"

@@ -4,7 +4,10 @@
   theme,
   ...
 }: {
-  imports = [inputs.caelestia-shell.homeManagerModules.default];
+  imports = [
+    inputs.caelestia-shell.homeManagerModules.default
+    ./cealestia_patches
+  ];
 
   programs.caelestia = {
     enable = true;

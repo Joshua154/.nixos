@@ -1,0 +1,23 @@
+--- a/modules/bar/components/Clock.qml
++++ b/modules/bar/components/Clock.qml
+@@ -39,8 +39,19 @@
+             visible: active
+ 
+             sourceComponent: MaterialIcon {
+-                text: "calendar_month"
++                text: "calendar_today"
+                 color: root.colour
++                fill: 0
++
++                StyledText {
++                    anchors.centerIn: parent
++                    anchors.verticalCenterOffset: parent.height * 0.12
++                    text: Time.format("d")
++                    color: root.colour
++                    font.pixelSize: Math.round(parent.height * 0.36)
++                    font.bold: true
++                    horizontalAlignment: Text.AlignHCenter
++                }
+             }
+         }
+ 

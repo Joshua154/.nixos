@@ -10,7 +10,7 @@
     hyprland.url = "github:hyprwm/Hyprland";
 
     caelestia-shell = {
-      url = "github:caelestia-dots/shell";
+      url = "github:Joshua154/caelestia-shell/own/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

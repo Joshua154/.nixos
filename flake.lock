@@ -44,11 +44,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793423030,
-        "narHash": "sha256-90s3Me2ICTCL9bgjojzAwyzhRwhhSgPITLO2gRy606A=",
+        "lastModified": 1794549950,
+        "narHash": "sha256-CwnkJOnUNZB2jQGz5824L0myBtvmc98OyrwJvZgcT5s=",
         "owner": "caelestia-dots",
         "repo": "cli",
-        "rev": "fdb3e47038c77ec8e7bb6010ffbcae00501d420b",
+        "rev": "9ab901f592917454da396ea012c50dd2c3f37003",
         "type": "github"
       },
       "original": {
@@ -67,16 +67,17 @@
         "quickshell": "quickshell"
       },
       "locked": {
-        "lastModified": 1793626482,
-        "narHash": "sha256-A+jGZeMcLoy8+2PlYtSi9bsWtyVhVucs/uv9Vg/PB+Y=",
-        "owner": "caelestia-dots",
-        "repo": "shell",
-        "rev": "bcbb5d5139d5159839c7362d8f4954ccc7dbd67d",
+        "lastModified": 1794781016,
+        "narHash": "sha256-3moZ5KK8cjFNdnOPdnBmqYon/9ZMbAcy2Dxm7TRboDI=",
+        "owner": "Joshua154",
+        "repo": "caelestia-shell",
+        "rev": "7cb2f8719cfc0fb2835b0f49d9e9434953920664",
         "type": "github"
       },
       "original": {
-        "owner": "caelestia-dots",
-        "repo": "shell",
+        "owner": "Joshua154",
+        "ref": "own/main",
+        "repo": "caelestia-shell",
         "type": "github"
       }
     },

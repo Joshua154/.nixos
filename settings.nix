@@ -50,8 +50,9 @@
     };
 
     desktop = {
+      secureBoot = false;
       profiles = {
-        boot = "systemd-boot";
+        boot = "limine-dual-boot";
         hardware = [
           "nvidia"
         ];

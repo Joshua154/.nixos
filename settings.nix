@@ -50,7 +50,7 @@
     };
 
     desktop = {
-      secureBoot = false;
+      secureBoot = true;
       profiles = {
         boot = "limine-dual-boot";
         hardware = [

@@ -3,6 +3,5 @@
     celluloid
     spotify
     ffmpeg
-    gthumb
   ];
 }

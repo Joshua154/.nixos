@@ -2,8 +2,8 @@
   home.packages = with pkgs; [
     discord
 
-    legendary-gl
-    prismlauncher
+    # legendary-gl
+    # prismlauncher
     wineWow64Packages.stable
   ];
 }

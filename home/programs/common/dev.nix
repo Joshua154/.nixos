@@ -11,8 +11,6 @@
     texliveFull
     vscode
 
-    jetbrains-toolbox
-
     devenv
   ];
 }

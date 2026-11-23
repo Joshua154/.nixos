@@ -9,6 +9,7 @@
     ./android.nix
     ./boot.nix
     ./cloudflared.nix
+    ./development.nix
     ./fonts.nix
     ./graphics.nix
     ./hardware.nix

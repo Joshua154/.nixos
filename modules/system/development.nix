@@ -22,10 +22,10 @@
       libgbm
       libxkbcommon
 
-      xorg.libX11
-      xorg.libXext
-      xorg.libXrandr
-      xorg.libxcb
+      libX11
+      libXext
+      libXrandr
+      libxcb
     ];
   };
 }
